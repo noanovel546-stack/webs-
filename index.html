@@ -1,1 +1,84 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101522">
+<title>Pendaftaran RP</title>
+<style>
+:root{--bg:#0b1020;--card:#131b2e;--line:#27334d;--ink:#edf2ff;--muted:#a4afc8;--accent:#7c5cff;--good:#37c98b;--bad:#ff7777}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1c2450 0,#0b1020 55%);color:var(--ink);font:15px/1.5 system-ui,Arial,sans-serif;min-height:100vh}
+header{padding:16px;border-bottom:1px solid var(--line);background:#0b1020d9;position:sticky;top:0;z-index:2;backdrop-filter:blur(10px)}.top{max-width:1050px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-weight:900;letter-spacing:.04em}.nav{display:flex;gap:8px}
+main{max-width:1050px;margin:28px auto;padding:0 14px 40px}.card{background:#131b2ef2;border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:16px;box-shadow:0 15px 45px #0002}.narrow{max-width:680px;margin-inline:auto}
+h1{font-size:clamp(26px,5vw,38px);line-height:1.15;margin:8px 0 12px}h2{font-size:20px;margin:0 0 12px}p{color:var(--muted);margin:7px 0 16px}.eyebrow{color:#b8aaff;font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
+button{border:1px solid var(--line);background:#1a2540;color:var(--ink);padding:11px 14px;border-radius:11px;font:inherit;font-weight:650;cursor:pointer}button.primary{background:var(--accent);border-color:var(--accent);color:white}button:disabled{opacity:.55;cursor:wait}
+label{display:block;margin:14px 0 6px;font-weight:650}input,select,textarea{width:100%;border:1px solid #34415f;border-radius:11px;padding:12px;background:#0c1427;color:var(--ink);font:inherit}input[type=checkbox]{width:auto}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.hidden{display:none!important}.notice{padding:12px 14px;border-radius:11px;background:#202d50;color:#d9e3ff;margin:12px 0}.error{background:#47232c;color:#ffd8de}.success{background:#153d32;color:#caffdf}.small{font-size:12px;color:var(--muted)}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.toolbar input{flex:1;min-width:150px}.tablewrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:13px}td,th{text-align:left;padding:10px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:11px;color:var(--muted);text-transform:uppercase}.danger{color:#ffaaaa}footer{text-align:center;color:var(--muted);padding:20px;font-size:12px}
+@media(min-width:700px){.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}.span2{grid-column:span 2}}
+</style>
+</head>
+<body>
+<header><div class="top"><div class="brand">✦ FORM PENDAFTARAN RP</div><div class="nav"><button id="showForm" class="primary">Formulir</button><button id="showAdmin">Admin</button></div></div></header>
+<main>
+<section id="publicView" class="card narrow">
+<div class="eyebrow">Pendaftaran dibuka</div><h1 id="formTitle">Pendaftaran Roleplay</h1><p id="formDescription">Isi semua data dengan benar sebelum mengirim pendaftaran.</p>
+<div id="publicNotice" class="hidden notice"></div><form id="registrationForm"><div id="fields" class="formgrid"></div><button class="primary" id="submitBtn" type="submit" style="width:100%;margin-top:20px">Kirim pendaftaran</button></form>
+</section>
+<section id="loginView" class="card narrow hidden"><div class="eyebrow">Area terbatas</div><h1>Login admin</h1><p>Masuk menggunakan akun admin Supabase yang sudah dibuat.</p><div id="loginNotice" class="hidden notice"></div><form id="loginForm"><label for="email">Email admin</label><input id="email" type="email" autocomplete="username" required><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required><button class="primary" type="submit" style="width:100%;margin-top:16px">Login</button></form></section>
+<section id="dashboard" class="hidden">
+<div class="card"><div class="row"><div><div class="eyebrow">Panel admin</div><h1>Data pendaftar</h1></div><button id="logout">Keluar</button></div><div id="dashNotice" class="hidden notice"></div></div>
+<div class="card"><h2>Pengaturan formulir</h2><label for="cfgTitle">Judul</label><input id="cfgTitle"><label for="cfgDesc">Deskripsi</label><textarea id="cfgDesc" rows="2"></textarea><label for="cfgFields">Pertanyaan (JSON)</label><textarea id="cfgFields" rows="12" spellcheck="false"></textarea><p class="small">Jenis: text, textarea, email, number, select, checkbox. Pertanyaan select wajib punya options.</p><div class="row"><button class="primary" id="saveCfg">Simpan pengaturan</button><button id="reloadCfg">Muat ulang</button></div></div>
+<div class="card"><h2>Pendaftar <span id="count" class="small"></span></h2><div class="toolbar"><input id="search" placeholder="Cari jawaban…"><select id="filter"><option value="">Semua status</option><option>menunggu</option><option>diterima</option><option>ditolak</option></select><button class="primary" id="export">Ekspor CSV</button><button id="refresh">Muat ulang data</button></div><div class="tablewrap"><table><thead><tr><th>Waktu</th><th>Jawaban</th><th>Status</th><th>Aksi</th></tr></thead><tbody id="rows"><tr><td colspan="4">Memuat…</td></tr></tbody></table></div></div>
+</section>
+</main><footer>Form Pendaftaran RP · GitHub Pages + Supabase</footer>
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
+// URL project sudah diisi. Ganti placeholder key dengan Publishable key Supabase.
+const SUPABASE_URL = 'https://rmekoxrlectzcdnjbhqd.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_99INW5pMLJeswkAqXPqHHw_xTFYieuG';
+const configured = SUPABASE_URL.startsWith('https://') && SUPABASE_ANON_KEY.startsWith('sb_publishable_');
+const supabase = configured ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+const defaultConfig = {title:'Pendaftaran Roleplay',description:'Isi semua data dengan benar sebelum mengirim pendaftaran.',fields:[
+{id:'telepon',label:'Nomor telepon kamu',type:'text',required:true,placeholder:'Nomor WhatsApp'},
+{id:'nama_irl',label:'Nama IRL',type:'text',required:true,placeholder:'Nama asli kamu'},
+{id:'nama_rp',label:'Nama RP',type:'text',required:true,placeholder:'Nama karakter RP'},
+{id:'umur_irl',label:'Umur IRL',type:'number',required:true,placeholder:'Umur kamu'},
+{id:'siap_rules',label:'Siap mengikuti rules?',type:'select',required:true,options:['Ya, saya siap','Belum siap']}
+]};
+let cfg=defaultConfig, regs=[], user=null;
+const $=id=>document.getElementById(id), views=['publicView','loginView','dashboard'];
+function show(id){views.forEach(v=>$(v).classList.toggle('hidden',v!==id))}
+function msg(id,text,type=''){const e=$(id);e.textContent=text;e.className='notice '+type}
+function hide(id){$(id).classList.add('hidden')}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function render(){ $('formTitle').textContent=cfg.title||'Pendaftaran Roleplay';$('formDescription').textContent=cfg.description||'';$('fields').innerHTML='';
+cfg.fields.forEach((f,i)=>{let id='f'+i,control='';
+if(f.type==='textarea')control=`<textarea id="${id}" name="${esc(f.id)}" ${f.required?'required':''} placeholder="${esc(f.placeholder||'')}"></textarea>`;
+else if(f.type==='select')control=`<select id="${id}" name="${esc(f.id)}" ${f.required?'required':''}><option value="">Pilih…</option>${(f.options||[]).map(o=>`<option>${esc(o)}</option>`).join('')}</select>`;
+else if(f.type==='checkbox')control=`<input id="${id}" name="${esc(f.id)}" type="checkbox" ${f.required?'required':''}>`;
+else control=`<input id="${id}" name="${esc(f.id)}" type="${['text','email','number'].includes(f.type)?f.type:'text'}" ${f.required?'required':''} placeholder="${esc(f.placeholder||'')}">`;
+const d=document.createElement('div');d.className=f.type==='textarea'?'span2':'';d.innerHTML=`<label for="${id}">${esc(f.label||f.id)}${f.required?' *':''}</label>${control}`;$('fields').appendChild(d)})}
+async function loadCfg(){if(!supabase){render();msg('publicNotice','Belum terhubung: isi Publishable key Supabase pada index.html.','error');return}
+const {data,error}=await supabase.from('form_config').select('config').eq('id',1).maybeSingle();cfg=!error&&data?.config?data.config:defaultConfig;render()}
+$('showForm').onclick=()=>show('publicView');
+$('showAdmin').onclick=()=>{show('loginView');if(!supabase)msg('loginNotice','Isi Publishable key Supabase pada index.html dulu.','error')};
+$('registrationForm').onsubmit=async e=>{e.preventDefault();if(!supabase){msg('publicNotice','Database belum terhubung. Isi Publishable key dahulu.','error');return}
+const answers={};for(const f of cfg.fields){const el=e.target.elements.namedItem(f.id);if(el)answers[f.id]=f.type==='checkbox'?el.checked:el.value}
+$('submitBtn').disabled=true;$('submitBtn').textContent='Mengirim…';const {error}=await supabase.from('registrations').insert({answers,status:'menunggu'});$('submitBtn').disabled=false;$('submitBtn').textContent='Kirim pendaftaran';
+if(error){msg('publicNotice','Gagal mengirim: '+error.message,'error');return}e.target.reset();msg('publicNotice','Pendaftaran berhasil dikirim!','success')};
+$('loginForm').onsubmit=async e=>{e.preventDefault();if(!supabase)return;const {data,error}=await supabase.auth.signInWithPassword({email:$('email').value,password:$('password').value});if(error){msg('loginNotice','Login gagal. Periksa email/password akun admin.','error');return}user=data.user;await dashboardLoad()};
+$('logout').onclick=async()=>{await supabase.auth.signOut();user=null;show('loginView')};
+async function dashboardLoad(){show('dashboard');hide('dashNotice');const {data,error}=await supabase.from('admin_users').select('user_id').eq('user_id',user.id).maybeSingle();if(error||!data){await supabase.auth.signOut();user=null;show('loginView');msg('loginNotice','Akun belum diberi akses admin. Ikuti README untuk memasukkan User ID ke tabel admin_users.','error');return}await loadAdminCfg();await loadRegs()}
+async function loadAdminCfg(){const {data}=await supabase.from('form_config').select('config').eq('id',1).maybeSingle();cfg=data?.config||defaultConfig;$('cfgTitle').value=cfg.title||'';$('cfgDesc').value=cfg.description||'';$('cfgFields').value=JSON.stringify(cfg.fields,null,2);render()}
+$('reloadCfg').onclick=loadAdminCfg;
+$('saveCfg').onclick=async()=>{try{const fields=JSON.parse($('cfgFields').value);if(!Array.isArray(fields))throw Error('Pertanyaan harus berupa array.');for(const f of fields){if(!f.id||!f.label||!f.type)throw Error('Setiap pertanyaan wajib punya id, label, type.');if(!['text','textarea','email','number','select','checkbox'].includes(f.type))throw Error('Tipe tidak didukung: '+f.type);if(f.type==='select'&&!Array.isArray(f.options))throw Error('Select perlu options berupa array.')}
+const next={title:$('cfgTitle').value.trim()||'Pendaftaran Roleplay',description:$('cfgDesc').value.trim(),fields};const {error}=await supabase.from('form_config').upsert({id:1,config:next,updated_at:new Date().toISOString()});if(error)throw error;cfg=next;render();msg('dashNotice','Pengaturan berhasil disimpan.','success')}catch(err){msg('dashNotice','Gagal menyimpan: '+err.message,'error')}};
+async function loadRegs(){$('rows').innerHTML='<tr><td colspan="4">Memuat…</td></tr>';const {data,error}=await supabase.from('registrations').select('*').order('created_at',{ascending:false}).limit(2000);if(error){$('rows').innerHTML=`<tr><td colspan="4">${esc(error.message)}</td></tr>`;return}regs=data||[];renderRegs()}
+function renderRegs(){const q=$('search').value.toLowerCase(),st=$('filter').value,list=regs.filter(r=>(!st||r.status===st)&&(!q||JSON.stringify(r.answers||{}).toLowerCase().includes(q)));$('count').textContent=`(${list.length} tampil / ${regs.length} total)`;if(!list.length){$('rows').innerHTML='<tr><td colspan="4">Belum ada pendaftar.</td></tr>';return}
+$('rows').innerHTML=list.map(r=>`<tr><td>${esc(new Date(r.created_at).toLocaleString('id-ID'))}<div class="small">${esc(r.id)}</div></td><td>${Object.entries(r.answers||{}).map(([k,v])=>`<div><b>${esc(k)}:</b> ${esc(v===true?'Ya':v===false?'Tidak':v)}</div>`).join('')}</td><td><select data-status="${esc(r.id)}"><option ${r.status==='menunggu'?'selected':''}>menunggu</option><option ${r.status==='diterima'?'selected':''}>diterima</option><option ${r.status==='ditolak'?'selected':''}>ditolak</option></select></td><td><button class="danger" data-del="${esc(r.id)}">Hapus</button></td></tr>`).join('');
+document.querySelectorAll('[data-status]').forEach(el=>el.onchange=async()=>{const {error}=await supabase.from('registrations').update({status:el.value}).eq('id',el.dataset.status);if(error)msg('dashNotice','Gagal mengubah status: '+error.message,'error');else{const r=regs.find(x=>x.id===el.dataset.status);if(r)r.status=el.value;renderRegs()}});
+document.querySelectorAll('[data-del]').forEach(el=>el.onclick=async()=>{if(!confirm('Hapus pendaftaran ini?'))return;const {error}=await supabase.from('registrations').delete().eq('id',el.dataset.del);if(error)msg('dashNotice','Gagal menghapus: '+error.message,'error');else{regs=regs.filter(r=>r.id!==el.dataset.del);renderRegs()}})}
+$('search').oninput=renderRegs;$('filter').onchange=renderRegs;$('refresh').onclick=loadRegs;
+$('export').onclick=()=>{const q=$('search').value.toLowerCase(),st=$('filter').value,rows=regs.filter(r=>(!st||r.status===st)&&(!q||JSON.stringify(r.answers||{}).toLowerCase().includes(q))),headers=['id','created_at','status',...cfg.fields.map(f=>f.label||f.id)],quote=v=>'"'+String(v??'').replace(/"/g,'""')+'"',csv=[headers.map(quote).join(','),...rows.map(r=>[r.id,r.created_at,r.status,...cfg.fields.map(f=>(r.answers||{})[f.id])].map(quote).join(','))].join('\r\n'),blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='pendaftar-rp.csv';a.click();URL.revokeObjectURL(url)};
+(async()=>{await loadCfg();if(supabase){const {data}=await supabase.auth.getSession();if(data?.session){user=data.session.user;await dashboardLoad()}}})();
+</script>
+</body></html>
