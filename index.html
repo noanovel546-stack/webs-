@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<title>Formulir Pendaftaran</title>
+<style>
+:root{--ink:#172033;--muted:#687386;--line:#e4e8ef;--bg:#f6f8fb;--primary:#315efb;--danger:#c62828;--green:#16794b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--ink)}
+header{background:#fff;border-bottom:1px solid var(--line);padding:15px 18px;position:sticky;top:0;z-index:2}
+.top{max-width:1050px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-weight:800;font-size:17px}.nav{display:flex;gap:8px;flex-wrap:wrap}
+button,.btn{border:1px solid var(--line);background:white;border-radius:10px;padding:10px 13px;font:inherit;cursor:pointer;color:var(--ink);text-decoration:none}
+button.primary,.btn.primary{background:var(--primary);border-color:var(--primary);color:white}button.danger{color:var(--danger)}
+main{max-width:1050px;margin:26px auto;padding:0 14px 40px}.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 4px 18px #17203308;margin-bottom:16px}
+.narrow{max-width:680px;margin-left:auto;margin-right:auto}.eyebrow{font-size:12px;color:var(--primary);font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+h1{font-size:clamp(25px,5vw,34px);line-height:1.2;margin:8px 0}h2{font-size:20px;margin:0 0 12px}p{color:var(--muted);margin:7px 0 15px}
+label{display:block;font-weight:650;margin:14px 0 6px}input,textarea,select{width:100%;border:1px solid #d7deea;border-radius:10px;padding:12px;font:inherit;background:#fff;color:var(--ink)}textarea{min-height:90px;resize:vertical}
+.fieldhint{font-size:12px;color:var(--muted);margin-top:4px}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.hidden{display:none!important}
+.notice{padding:12px 14px;border-radius:10px;background:#eef4ff;color:#2445a7;margin:12px 0}.error{background:#fff0f0;color:#9f1d1d}.success{background:#ecfdf3;color:#11633d}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;border-bottom:1px solid var(--line);padding:11px 9px;vertical-align:top}th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.tablewrap{overflow-x:auto}.pill{display:inline-block;padding:4px 8px;border-radius:99px;font-size:12px;background:#f1f3f7}.pill.menunggu{background:#fff4d6;color:#805800}.pill.diterima{background:#e6f8ee;color:#12663b}.pill.ditolak{background:#ffeded;color:#a51d1d}
+.small{font-size:12px;color:var(--muted)}.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:14px}.toolbar input{flex:1;min-width:170px}.fieldbox{border:1px solid var(--line);padding:12px;border-radius:12px;margin:10px 0}.fieldbox .row{align-items:end}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:22px}
+@media(min-width:700px){.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}.span2{grid-column:span 2}}
+</style>
+</head>
+<body>
+<header><div class="top"><div class="brand">✳ Form Pendaftaran</div><div class="nav"><button id="showFormBtn" class="primary">Formulir</button><button id="showAdminBtn">Admin</button></div></div></header>
+<main>
+<section id="publicView" class="card narrow">
+<div class="eyebrow">Pendaftaran online</div><h1 id="formTitle">Formulir Pendaftaran</h1><p id="formDescription">Isi formulir di bawah dengan benar, lalu kirim pendaftaran.</p>
+<div id="publicNotice" class="hidden notice"></div>
+<form id="registrationForm"><div id="dynamicFields"></div><button class="primary" type="submit" id="submitBtn" style="width:100%;margin-top:18px">Kirim pendaftaran</button></form>
+</section>
+
+<section id="adminLoginView" class="card narrow hidden">
+<div class="eyebrow">Area terbatas</div><h1>Login admin</h1><p>Masuk dengan akun admin Supabase yang sudah lu buat.</p>
+<div id="loginNotice" class="hidden notice"></div>
+<form id="loginForm"><label for="email">Email admin</label><input id="email" type="email" autocomplete="username" required>
+<label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required>
+<button class="primary" type="submit" style="width:100%;margin-top:16px">Login</button></form>
+<p class="small">Tidak ada tombol daftar admin di website untuk mencegah orang lain membuat akun admin sembarangan.</p>
+</section>
+
+<section id="dashboardView" class="hidden">
+<div class="card"><div class="row"><div><div class="eyebrow">Dashboard</div><h1 style="margin-bottom:3px">Data pendaftar</h1><p style="margin:0">Kelola status, cari data, dan ekspor CSV.</p></div><button id="logoutBtn">Keluar</button></div>
+<div id="dashboardNotice" class="hidden notice"></div></div>
+<div class="card"><h2>Pengaturan formulir</h2><p>Lu bisa mengubah judul, deskripsi, dan pertanyaan sendiri di sini. Simpan perubahan untuk memperbarui formulir publik.</p>
+<label for="configTitle">Judul formulir</label><input id="configTitle" maxlength="120">
+<label for="configDescription">Deskripsi</label><textarea id="configDescription" rows="2"></textarea>
+<label for="fieldsJson">Daftar pertanyaan (JSON)</label><textarea id="fieldsJson" rows="12" spellcheck="false"></textarea>
+<div class="small">Tipe yang didukung: text, textarea, email, number, select, checkbox. Untuk select, isi opsi di properti "options". Setiap pertanyaan wajib punya id unik, label, dan type.</div>
+<div class="row" style="margin-top:12px"><button class="primary" id="saveConfigBtn">Simpan pengaturan</button><button id="resetConfigBtn">Muat ulang</button></div></div>
+<div class="card"><h2>Pendaftar <span id="countLabel" class="small"></span></h2>
+<div class="toolbar"><input id="searchInput" placeholder="Cari nama, email, atau jawaban…"><select id="statusFilter" style="max-width:190px"><option value="">Semua status</option><option>menunggu</option><option>diterima</option><option>ditolak</option></select><button class="primary" id="exportBtn">Ekspor CSV</button><button id="refreshBtn">Muat ulang data</button></div>
+<div class="tablewrap"><table><thead><tr><th>Waktu</th><th>Jawaban</th><th>Status</th><th>Aksi</th></tr></thead><tbody id="registrationsBody"><tr><td colspan="4">Memuat data…</td></tr></tbody></table></div>
+</div>
+</section>
+</main>
+<footer>Form Pendaftaran · Website belum online sampai lu deploy dan menghubungkan database.</footer>
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+// 1) Isi dua nilai ini dari Supabase: Project Settings → API.
+const SUPABASE_URL = 'ISI_SUPABASE_PROJECT_URL';
+const SUPABASE_ANON_KEY = 'ISI_SUPABASE_PUBLISHABLE_OR_ANON_KEY';
+
+const configured = SUPABASE_URL.startsWith('https://') && !SUPABASE_URL.includes('ISI_SUPABASE');
+const supabase = configured ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+const defaultConfig = {
+  title: 'Formulir Pendaftaran',
+  description: 'Isi formulir di bawah dengan benar, lalu kirim pendaftaran.',
+  fields: [
+    {id:'nama', label:'Nama lengkap', type:'text', required:true, placeholder:'Tulis nama lu'},
+    {id:'kontak', label:'Kontak (opsional)', type:'text', required:false, placeholder:'WhatsApp / Discord'},
+    {id:'alasan', label:'Alasan mendaftar', type:'textarea', required:true, placeholder:'Ceritakan singkat…'}
+  ]
+};
+let currentConfig = defaultConfig, allRegistrations = [], currentUser = null;
+const $ = id => document.getElementById(id);
+const views = ['publicView','adminLoginView','dashboardView'];
+function showView(view){views.forEach(v=>$(v).classList.toggle('hidden',v!==view));}
+function notice(id,msg,type=''){const el=$(id);el.textContent=msg;el.className='notice '+type;}
+function hideNotice(id){$(id).classList.add('hidden');}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function safeConfig(c){if(!c||!Array.isArray(c.fields))return defaultConfig;return c;}
+function renderFields(){
+  $('formTitle').textContent=currentConfig.title||'Formulir Pendaftaran';
+  $('formDescription').textContent=currentConfig.description||'Isi formulir di bawah.';
+  $('dynamicFields').innerHTML='';
+  currentConfig.fields.forEach((f,i)=>{
+    const wrap=document.createElement('div');wrap.className=(f.type==='textarea'?'span2':'');
+    const id='field_'+i;let control='';
+    if(f.type==='textarea')control=`<textarea id="${id}" name="${esc(f.id)}" ${f.required?'required':''} placeholder="${esc(f.placeholder||'')}"></textarea>`;
+    else if(f.type==='select')control=`<select id="${id}" name="${esc(f.id)}" ${f.required?'required':''}><option value="">Pilih…</option>${(f.options||[]).map(o=>`<option value="${esc(o)}">${esc(o)}</option>`).join('')}</select>`;
+    else if(f.type==='checkbox')control=`<input id="${id}" name="${esc(f.id)}" type="checkbox" style="width:auto;margin-right:8px" ${f.required?'required':''}>`;
+    else control=`<input id="${id}" name="${esc(f.id)}" type="${['text','email','number'].includes(f.type)?f.type:'text'}" ${f.required?'required':''} placeholder="${esc(f.placeholder||'')}">`;
+    wrap.innerHTML=`<label for="${id}">${esc(f.label||f.id)}${f.required?' *':''}</label>${control}`;
+    $('dynamicFields').appendChild(wrap);
+  });
+}
+async function loadConfig(){
+  if(!supabase){currentConfig=defaultConfig;renderFields();notice('publicNotice','Website belum terhubung ke Supabase. Ikuti README untuk mengatur database.','error');return;}
+  const {data,error}=await supabase.from('form_config').select('config').eq('id',1).maybeSingle();
+  currentConfig=!error&&data?.config?safeConfig(data.config):defaultConfig;renderFields();
+}
+$('showFormBtn').onclick=()=>{showView('publicView');};
+$('showAdminBtn').onclick=async()=>{if(!supabase){showView('adminLoginView');notice('loginNotice','Isi URL dan anon/publishable key Supabase di file index.html dulu.','error');return;}showView('adminLoginView');};
+$('registrationForm').addEventListener('submit',async e=>{
+  e.preventDefault();if(!supabase){notice('publicNotice','Database belum terhubung. Atur Supabase dulu.','error');return;}
+  const answers={};for(const f of currentConfig.fields){const el=e.target.elements.namedItem(f.id);if(!el)continue;answers[f.id]=f.type==='checkbox'?el.checked:el.value;}
+  $('submitBtn').disabled=true;$('submitBtn').textContent='Mengirim…';
+  const {error}=await supabase.from('registrations').insert({answers,status:'menunggu'});
+  $('submitBtn').disabled=false;$('submitBtn').textContent='Kirim pendaftaran';
+  if(error){notice('publicNotice','Gagal mengirim: '+error.message,'error');return;}
+  e.target.reset();notice('publicNotice','Pendaftaran berhasil dikirim. Simpan informasi ini jika admin perlu menghubungi lu.','success');
+});
+$('loginForm').addEventListener('submit',async e=>{
+  e.preventDefault();if(!supabase)return;
+  const {data,error}=await supabase.auth.signInWithPassword({email:$('email').value,password:$('password').value});
+  if(error){notice('loginNotice','Login gagal. Periksa email/password dan pastikan akun sudah terdaftar sebagai admin.','error');return;}
+  currentUser=data.user;await loadDashboard();
+});
+$('logoutBtn').onclick=async()=>{await supabase.auth.signOut();currentUser=null;showView('adminLoginView');};
+async function loadDashboard(){
+  showView('dashboardView');hideNotice('dashboardNotice');
+  const {data:admin,error:adminErr}=await supabase.from('admin_users').select('user_id').eq('user_id',currentUser.id).maybeSingle();
+  if(adminErr||!admin){await supabase.auth.signOut();currentUser=null;showView('adminLoginView');notice('loginNotice','Akun berhasil login tetapi belum diberi akses admin. Tambahkan user ID ke tabel admin_users sesuai README.','error');return;}
+  await loadAdminConfig();await loadRegistrations();
+}
+async function loadAdminConfig(){
+  const {data,error}=await supabase.from('form_config').select('config').eq('id',1).maybeSingle();
+  currentConfig=!error&&data?.config?safeConfig(data.config):defaultConfig;
+  $('configTitle').value=currentConfig.title||'';$('configDescription').value=currentConfig.description||'';
+  $('fieldsJson').value=JSON.stringify(currentConfig.fields,null,2);renderFields();
+}
+$('saveConfigBtn').onclick=async()=>{
+  let fields;try{fields=JSON.parse($('fieldsJson').value);if(!Array.isArray(fields))throw Error('Daftar pertanyaan harus berupa array JSON.');for(const f of fields){if(!f.id||!f.label||!f.type)throw Error('Setiap pertanyaan wajib punya id, label, dan type.');if(!/^[a-zA-Z0-9_-]+$/.test(f.id))throw Error('ID hanya boleh huruf, angka, _ atau -.');if(!['text','textarea','email','number','select','checkbox'].includes(f.type))throw Error('Tipe tidak didukung: '+f.type);if(f.type==='select'&&!Array.isArray(f.options))throw Error('Pertanyaan select wajib memiliki options berupa array.');}}catch(err){notice('dashboardNotice','JSON tidak valid: '+err.message,'error');return;}
+  const config={title:$('configTitle').value.trim()||'Formulir Pendaftaran',description:$('configDescription').value.trim(),fields};
+  const {error}=await supabase.from('form_config').upsert({id:1,config,updated_at:new Date().toISOString()});
+  if(error){notice('dashboardNotice','Gagal menyimpan: '+error.message,'error');return;}
+  currentConfig=config;renderFields();notice('dashboardNotice','Pengaturan formulir berhasil disimpan.','success');
+};
+$('resetConfigBtn').onclick=loadAdminConfig;
+async function loadRegistrations(){
+  $('registrationsBody').innerHTML='<tr><td colspan="4">Memuat data…</td></tr>';
+  const {data,error}=await supabase.from('registrations').select('*').order('created_at',{ascending:false}).limit(2000);
+  if(error){$('registrationsBody').innerHTML=`<tr><td colspan="4">${esc(error.message)}</td></tr>`;return;}
+  allRegistrations=data||[];renderRegistrations();
+}
+function renderRegistrations(){
+  const q=$('searchInput').value.toLowerCase(),status=$('statusFilter').value;
+  const filtered=allRegistrations.filter(r=>(!status||r.status===status)&&(!q||(JSON.stringify(r.answers||{}).toLowerCase().includes(q))));
+  $('countLabel').textContent=`(${filtered.length} tampil / ${allRegistrations.length} total)`;
+  if(!filtered.length){$('registrationsBody').innerHTML='<tr><td colspan="4">Belum ada pendaftar yang cocok.</td></tr>';return;}
+  $('registrationsBody').innerHTML=filtered.map(r=>{
+    const details=Object.entries(r.answers||{}).map(([k,v])=>`<div><b>${esc(k)}:</b> ${esc(Array.isArray(v)?v.join(', '):v===true?'Ya':v===false?'Tidak':v)}</div>`).join('');
+    return `<tr><td>${esc(new Date(r.created_at).toLocaleString('id-ID'))}<div class="small">${esc(r.id)}</div></td><td>${details||'—'}</td><td><span class="pill ${esc(r.status)}">${esc(r.status)}</span><select data-status="${esc(r.id)}" aria-label="Ubah status"><option ${r.status==='menunggu'?'selected':''}>menunggu</option><option ${r.status==='diterima'?'selected':''}>diterima</option><option ${r.status==='ditolak'?'selected':''}>ditolak</option></select></td><td><button class="danger" data-delete="${esc(r.id)}">Hapus</button></td></tr>`;
+  }).join('');
+  document.querySelectorAll('[data-status]').forEach(el=>el.onchange=async()=>{const {error}=await supabase.from('registrations').update({status:el.value}).eq('id',el.dataset.status);if(error)notice('dashboardNotice','Gagal mengubah status: '+error.message,'error');else{const r=allRegistrations.find(x=>x.id===el.dataset.status);if(r)r.status=el.value;renderRegistrations();}});
+  document.querySelectorAll('[data-delete]').forEach(el=>el.onclick=async()=>{if(!confirm('Hapus pendaftaran ini? Tindakan ini tidak bisa dibatalkan.'))return;const {error}=await supabase.from('registrations').delete().eq('id',el.dataset.delete);if(error)notice('dashboardNotice','Gagal menghapus: '+error.message,'error');else{allRegistrations=allRegistrations.filter(x=>x.id!==el.dataset.delete);renderRegistrations();}});
+}
+$('searchInput').oninput=renderRegistrations;$('statusFilter').onchange=renderRegistrations;$('refreshBtn').onclick=loadRegistrations;
+$('exportBtn').onclick=()=>{
+ const q=$('searchInput').value.toLowerCase(),status=$('statusFilter').value;
+ const rows=allRegistrations.filter(r=>(!status||r.status===status)&&(!q||JSON.stringify(r.answers||{}).toLowerCase().includes(q)));
+ const headers=['id','created_at','status',...currentConfig.fields.map(f=>f.label||f.id)];
+ const quote=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+ const csv=[headers.map(quote).join(','),...rows.map(r=>[r.id,r.created_at,r.status,...currentConfig.fields.map(f=>{const v=(r.answers||{})[f.id];return typeof v==='object'?JSON.stringify(v):v===true?'Ya':v===false?'Tidak':v;})].map(quote).join(','))].join('\r\n');
+ const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='pendaftaran.csv';a.click();URL.revokeObjectURL(url);
+};
+(async()=>{
+ if(!supabase){await loadConfig();return;}
+ await loadConfig();
+ const {data}=await supabase.auth.getSession();
+ if(data?.session){currentUser=data.session.user;await loadDashboard();}
+})();
+</script>
+</body></html>
