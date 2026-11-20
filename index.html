@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7fb">
+  <meta name="description" content="Portal pendaftaran whitelist roleplay. Isi profil, pahami aturan, dan pantau status pendaftaranmu.">
+  <title>RP Gate — Pendaftaran Whitelist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+:root{--bg:#f6f7fb;--paper:#fff;--ink:#171923;--muted:#717585;--line:#e8e9f1;--violet:#6c59e7;--violet-dark:#5442cc;--violet-soft:#f0edff;--blue:#5c82f3;--green:#1a9b70;--red:#d54c65;--mono:'DM Mono',ui-monospace,SFMono-Regular,monospace;--sans:'DM Sans',Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--display:'Manrope',var(--sans);--shadow:0 24px 80px rgba(24,27,49,.08);--radius:24px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}button,input,select,textarea{font:inherit}button,a{-webkit-tap-highlight-color:transparent}a{color:inherit;text-decoration:none}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid rgba(108,89,231,.3);outline-offset:3px}::selection{background:#e2dcff;color:#25203f}.topline{height:4px;background:linear-gradient(90deg,#6c59e7,#a695ff 55%,#5d83ed)}.page-wrap{width:min(1160px,calc(100% - 56px));margin:0 auto}.site-header{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:32px;height:82px;padding:0 max(28px,calc((100vw - 1160px)/2));background:rgba(246,247,251,.89);backdrop-filter:blur(18px);border-bottom:1px solid rgba(223,225,235,.75)}.brand{display:inline-flex;align-items:center;gap:11px;flex-shrink:0}.brand-mark{display:grid;place-items:center;position:relative;width:42px;height:42px;border-radius:13px;background:var(--ink);color:#fff;font-family:var(--display);font-weight:800;font-size:20px;overflow:hidden;box-shadow:0 7px 16px rgba(22,23,36,.12)}.brand-mark>span{position:relative;z-index:2}.brand-mark i{position:absolute;width:21px;height:21px;right:-4px;bottom:-5px;border-radius:7px;background:var(--violet);transform:rotate(22deg)}.brand-copy{display:flex;flex-direction:column;line-height:1.2}.brand-copy strong{font:800 15px var(--display);letter-spacing:.1em}.brand-copy strong span{color:var(--violet)}.brand-copy small{margin-top:4px;color:#8c8fa0;font:9px var(--mono);letter-spacing:.1em}.main-nav{display:flex;gap:30px;margin-left:auto}.main-nav a{font-size:12px;font-weight:600;color:#666b7b;transition:color .2s}.main-nav a:hover{color:var(--violet)}.header-actions{display:flex;align-items:center;gap:17px}.live-pill{display:flex;align-items:center;gap:7px;font-size:10px;color:#76798a;white-space:nowrap}.live-pill i,.tiny-status i,.count-chip i,.leaderboard-footer i{width:7px;height:7px;background:#35b886;border-radius:50%;display:inline-block;box-shadow:0 0 0 3px rgba(53,184,134,.12)}.button{display:inline-flex;align-items:center;justify-content:center;gap:11px;min-height:48px;padding:0 20px;border:1px solid transparent;border-radius:13px;font-size:12px;font-weight:700;letter-spacing:.005em;transition:transform .18s,background .18s,border-color .18s,box-shadow .18s}.button:hover{transform:translateY(-1px)}.button:active{transform:translateY(0)}.button-primary{background:var(--violet);color:#fff;box-shadow:0 9px 22px rgba(108,89,231,.18)}.button-primary:hover{background:var(--violet-dark);box-shadow:0 11px 26px rgba(108,89,231,.24)}.button-dark{background:var(--ink);color:#fff}.button-dark:hover{background:#2b2d3a}.button-outline{background:#fff;border-color:var(--line);color:#393b49}.button-outline:hover{border-color:#c8c2f8;background:#fbfaff}.button-quiet{background:transparent;color:#636778;border-color:#e6e6ee}.button-quiet:hover{background:#fff;border-color:#d5d4e6}.button-small{min-height:38px;padding:0 14px;border-radius:10px;font-size:11px}.button-wide{width:100%}.button-icon{font-size:17px;font-weight:400}.mobile-menu{display:none;border:1px solid var(--line);border-radius:10px;width:40px;height:40px;background:#fff}.notice-bar{display:flex;align-items:center;gap:10px;padding:10px max(28px,calc((100vw - 1160px)/2));background:#fff5df;border-bottom:1px solid #f2e2b9;color:#705625;font-size:11px}.notice-icon{display:grid;place-items:center;width:17px;height:17px;border:1px solid #d7b766;border-radius:50%;font:500 10px var(--mono);flex-shrink:0}.notice-bar button{margin-left:auto;border:0;background:transparent;color:inherit;font-size:19px;line-height:1}.notice-bar.is-hidden{display:none}
+.hero{position:relative;display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:40px;min-height:630px;padding-top:74px;padding-bottom:80px}.hero-copy{position:relative;z-index:2;padding-bottom:4px}.eyebrow{display:flex;align-items:center;gap:9px;color:var(--violet);font:500 10px var(--mono);letter-spacing:.14em;text-transform:uppercase}.eyebrow-dot{width:7px;height:7px;border-radius:2px;background:var(--violet);transform:rotate(45deg)}.hero h1,.section-heading h2,.application-aside h2,.status-layout h2,.faq-layout h2,.admin-welcome h2{margin:22px 0 18px;font:800 clamp(42px,5vw,66px)/1.12 var(--display);letter-spacing:-.065em}.hero h1 span,.section-heading h2 span,.application-aside h2 span,.status-layout h2 span,.faq-layout h2 span,.admin-welcome h2 span{color:var(--violet)}.hero-lead{max-width:450px;color:#74798a;font-size:14px;line-height:1.9}.hero-actions{display:flex;align-items:center;gap:24px;margin-top:28px}.hero-actions .button{min-height:53px;padding:0 22px}.hero-actions .button span{font-size:17px}.text-link{font-size:12px;font-weight:700;color:#55596a}.text-link span{margin-left:6px;color:var(--violet)}.hero-trust{display:flex;align-items:center;gap:13px;margin-top:35px}.avatar-stack{display:flex;padding-left:2px}.avatar-stack span{display:grid;place-items:center;margin-left:-3px;width:30px;height:30px;border:2px solid var(--bg);border-radius:50%;background:#e3dfff;color:#6251ce;font:700 10px var(--mono)}.avatar-stack span:nth-child(2){background:#e1eaff;color:#4b70d8}.avatar-stack span:nth-child(3){background:#ddf4e9;color:#188b64}.hero-trust p{margin:0;color:#8a8d9a;font-size:10px;line-height:1.65}.hero-trust p strong{color:#3a3c48;font-size:11px}.hero-visual{min-height:440px;display:flex;align-items:center;justify-content:center;position:relative;isolation:isolate}.visual-grid{position:absolute;inset:25px -8px 30px 0;z-index:-2;opacity:.75;background-image:linear-gradient(rgba(118,111,171,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(118,111,171,.1) 1px,transparent 1px);background-size:27px 27px;mask-image:radial-gradient(ellipse,black,transparent 74%)}.visual-orbit{position:absolute;border:1px solid rgba(108,89,231,.17);border-radius:50%;transform:rotate(-29deg)}.orbit-a{width:460px;height:290px}.orbit-b{width:390px;height:350px;transform:rotate(39deg);border-color:rgba(89,130,243,.17)}.main-visual-card{position:relative;width:min(380px,88%);padding:27px 28px 22px;border-radius:20px;border:1px solid rgba(255,255,255,.9);background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(247,246,255,.96));box-shadow:0 28px 75px rgba(55,48,118,.15),0 3px 9px rgba(58,55,88,.04);transform:rotate(-3deg)}.visual-card-top{display:flex;align-items:center;justify-content:space-between}.mini-logo{display:grid;place-items:center;width:30px;height:30px;background:var(--ink);color:#fff;border-radius:9px;font:800 15px var(--display)}.tiny-status{display:flex;align-items:center;gap:7px;color:#8e90a0;font:9px var(--mono);letter-spacing:.08em}.tiny-status i{width:5px;height:5px}.visual-code{margin-top:35px;color:#9c9eac;font:9px var(--mono);letter-spacing:.13em}.visual-title{margin-top:11px;font:800 28px/1.28 var(--display);letter-spacing:-.055em}.visual-title span{color:var(--violet)}.visual-divider{height:1px;margin:26px 0 18px;background:#e6e4f1}.visual-progress-label{display:flex;justify-content:space-between;color:#999bac;font:9px var(--mono);letter-spacing:.06em}.visual-progress-label b{color:#5c5e70;font-weight:500}.visual-progress{display:flex;gap:6px;margin:10px 0 12px}.visual-progress i{height:5px;flex:1;background:#e6e3fa;border-radius:9px}.visual-progress i:first-child{background:var(--violet)}.visual-progress i:nth-child(2){background:#b7adfa}.visual-card-foot{display:flex;justify-content:space-between;color:#a3a5b2;font:8px var(--mono);letter-spacing:.06em}.floating-note{position:absolute;display:flex;align-items:center;gap:10px;padding:12px 15px;background:rgba(255,255,255,.95);border:1px solid #eeeef5;border-radius:13px;box-shadow:0 13px 30px rgba(40,41,67,.08);animation:float 5s ease-in-out infinite}.note-top{top:62px;right:0}.note-bottom{bottom:56px;left:-3px;animation-delay:-2s}.note-icon{display:grid;place-items:center;width:31px;height:31px;border-radius:10px;font-size:15px}.note-icon.purple{background:#efebff;color:var(--violet)}.note-icon.green{background:#e1f6ec;color:#21956f}.floating-note b,.floating-note small{display:block}.floating-note b{font-size:10px}.floating-note small{margin-top:2px;font-size:9px;color:#9597a5}.visual-caption{position:absolute;right:0;bottom:11px;color:#a7a8b5;font:8px var(--mono);letter-spacing:.12em}.hero-bottomline{position:absolute;bottom:23px;left:0;right:0;display:flex;justify-content:space-between;color:#afb0bd;font:9px var(--mono);letter-spacing:.08em}.hero-bottomline b{padding-left:8px;color:var(--violet)}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.flow-section{padding:96px 0 106px;background:#fff;border-top:1px solid #ececf3;border-bottom:1px solid #ececf3}.section-heading{display:flex;justify-content:space-between;align-items:end;gap:36px}.section-heading h2,.application-aside h2,.status-layout h2,.faq-layout h2,.admin-welcome h2{font-size:clamp(34px,4vw,48px);line-height:1.2;margin:17px 0 0}.split-heading>p{max-width:380px;margin:0 0 5px;color:#7f8290;font-size:13px;line-height:1.9}.flow-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-top:43px}.flow-card{position:relative;min-height:230px;padding:28px 27px 24px;border:1px solid #ececf4;border-radius:18px;background:#fdfdff;transition:transform .2s,border-color .2s,box-shadow .2s}.flow-card:hover{transform:translateY(-3px);border-color:#dcd6ff;box-shadow:0 15px 35px rgba(41,37,83,.05)}.flow-number{position:absolute;right:24px;top:24px;color:#b1b3c1;font:10px var(--mono)}.flow-icon{display:grid;place-items:center;width:44px;height:44px;border-radius:14px;font-size:22px}.icon-violet{background:#f0edff;color:var(--violet)}.icon-blue{background:#edf2ff;color:#5176dd}.icon-green{background:#e6f8ef;color:#25956d}.flow-card h3{margin:21px 0 7px;font:750 17px var(--display);letter-spacing:-.03em}.flow-card p{max-width:270px;margin:0;color:#828694;font-size:12px;line-height:1.85}.flow-tag{display:inline-block;margin-top:22px;color:#9da0af;font:9px var(--mono);letter-spacing:.1em}
+.application-section{position:relative;padding:112px 0 118px;overflow:hidden;background:linear-gradient(130deg,#f6f7fc,#f4f3ff 59%,#f8f9fd)}.application-section:before{content:'';position:absolute;top:-220px;left:-280px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(139,123,248,.09),transparent 68%);pointer-events:none}.application-layout{position:relative;display:grid;grid-template-columns:.7fr 1.3fr;gap:65px;align-items:start}.application-aside{padding-top:24px}.application-aside h2{margin-top:18px;font-size:43px}.application-aside>p{max-width:345px;margin:18px 0 28px;color:#7b7e8f;font-size:13px;line-height:1.9}.aside-checklist{display:grid;gap:18px;margin-top:31px}.aside-checklist>div{display:flex;align-items:flex-start;gap:12px}.aside-checklist>div>span{display:grid;place-items:center;flex-shrink:0;width:22px;height:22px;border-radius:7px;background:#e7e2ff;color:var(--violet);font-size:12px;font-weight:800}.aside-checklist p{margin:0}.aside-checklist b,.aside-checklist small{display:block}.aside-checklist b{font-size:12px}.aside-checklist small{max-width:280px;margin-top:3px;color:#8b8e9d;font-size:11px;line-height:1.6}.privacy-note{display:flex;gap:10px;align-items:flex-start;margin-top:39px;padding:14px;border:1px solid #e5e4f3;border-radius:13px;background:rgba(255,255,255,.5)}.privacy-lock{display:grid;place-items:center;width:30px;height:30px;background:#fff;border-radius:9px;color:var(--violet);font-size:14px;flex-shrink:0}.privacy-note p{margin:0;font-size:10px;line-height:1.65}.privacy-note b{color:#55586a}.privacy-note p span{color:#9295a4}.form-card{padding:32px 34px 28px;border:1px solid #ebebf4;border-radius:22px;background:#fff;box-shadow:var(--shadow)}.form-card-heading{display:flex;justify-content:space-between;align-items:center;gap:16px}.form-overline{color:#9b9cac;font:9px var(--mono);letter-spacing:.12em}.form-card-heading h3{margin:6px 0 0;font:800 24px var(--display);letter-spacing:-.05em}.required-note{display:flex;align-items:center;gap:7px;color:#8e91a0;font-size:10px;white-space:nowrap}.required-note i{width:5px;height:5px;border-radius:50%;background:var(--red)}.stepper{display:flex;align-items:center;gap:11px;margin:28px 0 29px;padding:14px 15px;border:1px solid #efeff6;border-radius:13px;background:#fbfbfe}.stepper-item{display:flex;align-items:center;gap:8px;color:#afb1bd;white-space:nowrap}.stepper-item span{display:grid;place-items:center;width:26px;height:26px;border-radius:8px;background:#eeeef4;font:10px var(--mono)}.stepper-item b{font-size:10px;font-weight:600}.stepper-item.active{color:#5144b6}.stepper-item.active span{background:var(--violet);color:#fff}.stepper-item.complete span{background:#e2ddff;color:var(--violet)}.stepper-line{height:1px;flex:1;min-width:8px;background:#e6e6ef}.form-step-title{margin-bottom:23px}.form-step-title>span{color:var(--violet);font:9px var(--mono);letter-spacing:.11em}.form-step-title h4{margin:7px 0 5px;font:750 20px var(--display);letter-spacing:-.04em}.form-step-title p{margin:0;color:#898c9b;font-size:11px}.input-grid{display:grid;grid-template-columns:1fr 1fr;gap:19px 16px}.field{display:flex;flex-direction:column;min-width:0;gap:8px}.field>span{font-size:11px;font-weight:700;color:#484b5a}.field em,.agree-check em{color:var(--red);font-style:normal}.field>span small{font-weight:400;color:#a2a4b1}.field input,.field select,.field textarea{display:block;width:100%;min-width:0;border:1px solid #e6e7ef;border-radius:10px;background:#fcfcfe;color:#262836;padding:12px 13px;font-size:12px;outline:none;transition:border-color .16s,box-shadow .16s,background .16s}.field input,.field select{height:45px}.field textarea{resize:vertical;min-height:110px;line-height:1.7}.field input::placeholder,.field textarea::placeholder{color:#b0b2bf}.field input:focus,.field select:focus,.field textarea:focus{border-color:#b5aafb;background:#fff;box-shadow:0 0 0 3px rgba(108,89,231,.08)}.field input[aria-invalid="true"],.field select[aria-invalid="true"],.field textarea[aria-invalid="true"]{border-color:#e6a0ac;background:#fffafb}.field-full{grid-column:1/-1}.field-hint{color:#a0a2b0;font-size:9px;line-height:1.6}.field-error{min-height:0;color:#c8495e;font-size:10px;line-height:1.3}.field-meta{display:flex;justify-content:space-between;gap:12px}.field-meta #storyCount{color:#a1a3b1;font:9px var(--mono)}.choice-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.choice{position:relative;min-width:0}.choice input{position:absolute;opacity:0;inset:auto;width:1px;height:1px}.choice>span{display:flex;flex-direction:column;justify-content:center;min-height:65px;padding:9px 11px;border:1px solid #e6e7ef;border-radius:10px;background:#fcfcfe;cursor:pointer;transition:border-color .15s,background .15s}.choice b{font-size:10px}.choice small{margin-top:3px;color:#999cab;font-size:9px}.choice input:checked+span{border-color:#9e91f5;background:#f5f2ff;box-shadow:inset 0 0 0 1px #b9affb}.choice input:focus-visible+span{outline:3px solid rgba(108,89,231,.24);outline-offset:2px}.form-controls{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:27px;padding-top:20px;border-top:1px solid #f0f0f6}.controls-right{display:flex;align-items:center;gap:14px}.step-helper{color:#9b9dac;font-size:9px;white-space:nowrap}.step-helper span{padding:0 4px;color:#c4c5ce}.form-controls .button{min-height:43px;padding:0 16px;border-radius:10px;font-size:11px}.form-controls .button span{font-size:16px}.quiz-list{display:grid;gap:17px}.quiz-item{min-width:0;margin:0;padding:15px;border:1px solid #ededf5;border-radius:13px}.quiz-item legend{display:block;max-width:100%;padding:0 0 10px;font-size:11px;font-weight:700;line-height:1.6}.quiz-item legend span{display:inline-grid;place-items:center;width:22px;height:22px;margin-right:6px;border-radius:7px;background:#f0edff;color:var(--violet);font:10px var(--mono)}.quiz-item>label{display:flex;align-items:flex-start;gap:9px;padding:8px 9px;border-radius:8px;color:#777b8b;font-size:10px;line-height:1.6;cursor:pointer;transition:background .15s}.quiz-item>label:hover{background:#faf9ff}.quiz-item>label input{accent-color:var(--violet);margin-top:3px;flex-shrink:0}.quiz-item>label:has(input:checked){background:#f4f1ff;color:#4f42b9}.agree-check{display:flex;align-items:flex-start;gap:10px;margin-top:19px;color:#747887;font-size:10px;line-height:1.75;cursor:pointer}.agree-check input{accent-color:var(--violet);margin-top:3px;flex-shrink:0}.form-footnote{margin:14px 0 0;color:#a1a3b1;font-size:9px;line-height:1.7}.submit-result{margin-top:22px;padding:18px;border-radius:13px;background:#eaf8f0;border:1px solid #cbeed9;color:#286747}.submit-result.error{background:#fff1f2;border-color:#f6cbd1;color:#a7354a}.submit-result h4{margin:0 0 6px;font:750 16px var(--display)}.submit-result p{margin:0;font-size:11px;line-height:1.7}.tracking-code{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;padding:11px 12px;border:1px dashed rgba(50,124,85,.45);border-radius:9px;background:rgba(255,255,255,.65)}.tracking-code code{overflow-wrap:anywhere;font:11px var(--mono);letter-spacing:.02em}.tracking-code button{flex-shrink:0;border:0;border-radius:7px;padding:7px 9px;background:#fff;color:#246646;font-size:10px;font-weight:700}.is-hidden{display:none!important}
+.status-section{padding:94px 0;background:#fff;border-bottom:1px solid #ededf4}.status-layout{display:grid;grid-template-columns:.9fr 1.1fr;align-items:center;gap:64px}.status-layout h2{font-size:40px}.status-layout>div>p{max-width:390px;margin:17px 0 0;color:#7e8291;font-size:12px;line-height:1.95}.status-card{display:grid;grid-template-columns:1fr auto;gap:16px 18px;padding:27px;border:1px solid #ebebf4;border-radius:18px;background:#fcfcff;box-shadow:0 14px 38px rgba(34,31,73,.05)}.status-card-icon{grid-column:1/-1;display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:#efecff;color:var(--violet);font-size:26px}.status-card-copy{grid-column:1/-1}.status-card-copy h3{margin:0;font:750 17px var(--display);letter-spacing:-.03em}.status-card-copy p{margin:5px 0 0;color:#9093a1;font-size:10px}.status-card .field{grid-column:1/2}.status-card>.button{align-self:start;margin-top:20px;min-height:45px}.status-result{grid-column:1/-1;padding:12px 14px;border-radius:10px;background:#f1efff;border:1px solid #dfdafd;color:#5445bc;font-size:11px;line-height:1.7}.status-result.status-accepted{background:#eaf8f0;border-color:#cbeed9;color:#286747}.status-result.status-rejected{background:#fff1f2;border-color:#f6cbd1;color:#a7354a}
+.leaderboard-section{padding:106px 0 112px}.leaderboard-heading{align-items:end}.leaderboard-heading h2{font-size:42px}.leaderboard-side{max-width:310px;display:flex;flex-direction:column;align-items:flex-start;gap:12px}.leaderboard-side p{margin:0;color:#848796;font-size:11px;line-height:1.8}.count-chip{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border-radius:8px;border:1px solid #e7e7f0;background:#fff;color:#777a8b;font:9px var(--mono)}.count-chip b{color:#2e3040}.count-chip i{width:5px;height:5px}.leaderboard-wrap{margin-top:36px;padding:0 22px;border:1px solid #e8e9f1;border-radius:17px;background:#fff;box-shadow:0 10px 40px rgba(40,40,70,.025)}.leaderboard-header,.roster-row{display:grid;grid-template-columns:80px 1fr 140px;align-items:center;gap:16px}.leaderboard-header{padding:18px 10px;border-bottom:1px solid #ececf4;color:#a0a2af;font:9px var(--mono);letter-spacing:.1em}.leaderboard-list{min-height:136px}.roster-row{padding:16px 10px;border-bottom:1px solid #f0f0f6}.roster-row:last-child{border-bottom:0}.roster-number{color:#adafbd;font:11px var(--mono)}.roster-name{display:flex;align-items:center;gap:12px}.roster-avatar{display:grid;place-items:center;width:35px;height:35px;border-radius:11px;background:#eeeaff;color:#5f50ca;font:700 12px var(--display)}.roster-name strong{display:block;font-size:12px}.roster-name small{display:block;margin-top:2px;color:#a1a3b0;font-size:9px}.status-badge{justify-self:start;padding:6px 9px;border-radius:7px;background:#eaf8f0;color:#26895e;font-size:9px;font-weight:700}.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:180px;padding:26px;text-align:center}.empty-state-mark{display:grid;place-items:center;width:38px;height:38px;margin-bottom:10px;border-radius:12px;background:#f0edff;color:var(--violet);font:800 16px var(--display)}.empty-state>b{font-size:12px}.empty-state p{margin:6px 0 0;color:#9698a6;font-size:10px}.leaderboard-footer{display:flex;justify-content:space-between;gap:20px;padding:15px 10px;border-top:1px solid #ececf4;color:#a4a6b3;font:8px var(--mono);letter-spacing:.08em}.leaderboard-footer span:last-child{display:flex;align-items:center;gap:7px}.leaderboard-footer i{width:5px;height:5px}
+.faq-section{padding:88px 0 98px;background:#fff;border-top:1px solid #e8e9f1}.faq-layout{display:grid;grid-template-columns:.72fr 1.28fr;gap:80px}.faq-layout h2{font-size:40px}.faq-layout>div:first-child>p{color:#878a99;font-size:12px}.faq-list details{border-bottom:1px solid #ececf4}.faq-list details:first-child{border-top:1px solid #ececf4}.faq-list summary{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:19px 0;cursor:pointer;list-style:none;font-size:12px;font-weight:700}.faq-list summary::-webkit-details-marker{display:none}.faq-list summary span{display:grid;place-items:center;flex-shrink:0;width:25px;height:25px;border-radius:8px;background:#f1efff;color:var(--violet);font-size:17px;font-weight:400;transition:transform .15s}.faq-list details[open] summary span{transform:rotate(45deg)}.faq-list details p{max-width:620px;margin:-4px 0 20px;color:#888b99;font-size:11px;line-height:1.9}
+.site-footer{padding:30px 0 0;background:#1d1e2a;color:#fff}.footer-main{display:flex;align-items:center;gap:30px;padding-bottom:28px}.site-footer .brand-mark{background:#fff;color:#20212e}.site-footer .brand-copy strong{color:#fff}.site-footer .brand-copy small{color:#9193a7}.footer-main>p{margin:0 auto 0 20px;color:#9294a5;font-size:10px;line-height:1.7}.back-top{color:#d5d2f7;font-size:10px;font-weight:700}.footer-bottom{display:flex;justify-content:space-between;gap:20px;padding:17px 0;border-top:1px solid #343542;color:#76798b;font:8px var(--mono);letter-spacing:.08em}.toast{position:fixed;z-index:100;bottom:22px;left:50%;max-width:min(450px,calc(100% - 30px));transform:translate(-50%,20px);opacity:0;pointer-events:none;padding:12px 17px;border-radius:12px;background:#222331;color:#fff;box-shadow:0 12px 30px rgba(0,0,0,.15);font-size:11px;transition:opacity .18s,transform .18s}.toast.show{opacity:1;transform:translate(-50%,0)}
+.admin-login-dialog,.admin-panel-dialog{padding:0;border:1px solid #e9e9f2;border-radius:22px;background:#fff;color:var(--ink);box-shadow:0 30px 100px rgba(22,23,38,.25)}.admin-login-dialog{width:min(460px,calc(100% - 28px));max-height:calc(100% - 28px);padding:32px}.admin-login-dialog::backdrop,.admin-panel-dialog::backdrop{background:rgba(18,19,31,.58);backdrop-filter:blur(5px)}.dialog-close{position:absolute;top:15px;right:15px;display:grid;place-items:center;width:33px;height:33px;border:1px solid #e9e9f2;border-radius:10px;background:#fff;color:#707384;font-size:21px;line-height:1}.admin-login-brand{display:flex;align-items:center;gap:11px;margin-bottom:32px}.admin-login-brand>div{display:flex;flex-direction:column}.admin-login-brand strong{font:800 11px var(--display);letter-spacing:.1em}.admin-login-brand small{margin-top:3px;color:#999cac;font:9px var(--mono);letter-spacing:.1em}.admin-login-dialog h2{margin:13px 0 9px;font:800 32px/1.14 var(--display);letter-spacing:-.06em}.admin-login-dialog h2 span{color:var(--violet)}.dialog-intro{margin:0 0 22px;color:#888b99;font-size:11px;line-height:1.8}.admin-login-dialog form{display:grid;gap:16px}.admin-login-dialog .button{margin-top:2px}.inline-message{padding:10px 12px;border-radius:9px;background:#fff1f2;color:#a7354a;font-size:10px;line-height:1.6}.demo-divider{display:flex;align-items:center;gap:12px;margin:18px 0;color:#b0b2bf;font:9px var(--mono)}.demo-divider:before,.demo-divider:after{content:'';height:1px;flex:1;background:#eeeef4}.secure-caption{margin:17px 0 0;color:#a1a3b0;text-align:center;font-size:9px;line-height:1.7}
+.admin-panel-dialog{width:min(1440px,calc(100% - 28px));height:min(95vh,1000px);max-width:none;max-height:none;border-radius:19px;overflow:hidden}.admin-panel-top{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px 24px;border-bottom:1px solid #e9eaf2;background:#fff}.admin-panel-title{display:flex;align-items:center;gap:10px}.admin-panel-title>div{display:flex;flex-direction:column}.admin-panel-title strong{font:800 11px var(--display);letter-spacing:.08em}.admin-panel-title small{margin-top:3px;color:#989baa;font:8px var(--mono);letter-spacing:.08em}.admin-panel-actions{display:flex;align-items:center;gap:8px}.panel-close{position:static}.admin-panel-body{height:calc(100% - 65px);overflow:auto;background:#f7f8fc;padding:30px max(25px,calc((100% - 1180px)/2)) 40px}.admin-welcome{display:flex;justify-content:space-between;align-items:center;gap:24px}.admin-welcome h2{margin:10px 0 7px;font-size:35px}.admin-welcome p{max-width:570px;margin:0;color:#888b9a;font-size:11px;line-height:1.8}.admin-date-chip{display:flex;flex-direction:column;gap:5px;padding:13px 15px;border:1px solid #e6e7f0;border-radius:11px;background:#fff;white-space:nowrap}.admin-date-chip span{color:#a0a2af;font:8px var(--mono);letter-spacing:.1em}.admin-date-chip b{font:10px var(--mono);color:var(--violet)}.admin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin:25px 0}.admin-stats article{padding:20px;border:1px solid #e9eaf2;border-radius:14px;background:#fff}.admin-stats article span{display:block;color:#7d8090;font-size:10px}.admin-stats article b{display:block;margin:9px 0 6px;font:800 30px var(--display);letter-spacing:-.05em}.admin-stats article small{color:#a3a5b2;font-size:9px}.admin-table-card{overflow:hidden;border:1px solid #e8e9f1;border-radius:15px;background:#fff}.admin-table-toolbar{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:20px;border-bottom:1px solid #ececf4}.admin-table-toolbar h3{margin:0;font:750 16px var(--display)}.admin-table-toolbar p{margin:4px 0 0;color:#9698a6;font-size:9px}.admin-filters{display:flex;gap:8px}.search-field{display:flex;align-items:center;gap:8px;width:220px;padding:0 11px;border:1px solid #e8e9f1;border-radius:9px;background:#fcfcfe}.search-field span{font-size:18px;color:#9799a7}.search-field input{width:100%;height:37px;border:0;outline:0;background:transparent;font-size:10px}.admin-filters select{height:37px;padding:0 11px;border:1px solid #e8e9f1;border-radius:9px;background:#fcfcfe;color:#626575;font-size:10px}.admin-table-scroll{overflow-x:auto}.admin-table{width:100%;border-collapse:collapse;min-width:1010px}.admin-table th{padding:13px 13px;background:#fbfbfe;border-bottom:1px solid #ececf4;color:#a1a3b1;text-align:left;white-space:nowrap;font:8px var(--mono);letter-spacing:.08em}.admin-table td{padding:15px 13px;border-bottom:1px solid #f0f0f6;vertical-align:top;font-size:10px}.admin-table tr:last-child td{border-bottom:0}.admin-table td:first-child,.admin-table th:first-child{padding-left:20px}.admin-table td:last-child,.admin-table th:last-child{padding-right:20px}.admin-person b{display:block;max-width:180px;overflow-wrap:anywhere;font-size:11px}.admin-person small{display:block;max-width:190px;margin-top:3px;color:#9497a6;overflow-wrap:anywhere}.admin-detail{display:grid;gap:4px;color:#717586;max-width:200px}.admin-detail small{color:#a0a2af;font-size:9px}.score-chip{display:inline-block;padding:5px 8px;border-radius:7px;background:#f1efff;color:#6252ca;font:10px var(--mono)}.status-select{max-width:120px;padding:8px 9px;border:1px solid #e6e7ef;border-radius:8px;background:#fff;color:#676a7a;font-size:10px}.admin-note-input{width:170px;min-height:36px;padding:8px 9px;border:1px solid #e6e7ef;border-radius:8px;font-size:10px;resize:vertical}.row-save{margin-top:6px;min-height:29px;padding:0 10px;border:0;border-radius:7px;background:var(--violet);color:#fff;font-size:9px;font-weight:700}.row-save:disabled{opacity:.6}.table-empty{height:120px;text-align:center;color:#9a9cab}.admin-table-footer{display:flex;justify-content:space-between;gap:20px;padding:14px 20px;border-top:1px solid #ececf4;color:#9a9cab;font:8px var(--mono);letter-spacing:.08em}.noscript-message{position:fixed;z-index:120;inset:auto 10px 10px;padding:16px;border-radius:10px;background:#241f34;color:white;font-size:13px}
+@media(min-width:1400px){.hero{min-height:680px}.hero h1{font-size:70px}}
+@media(max-width:1000px){.site-header{gap:20px;padding:0 26px}.main-nav{gap:18px}.main-nav a{font-size:11px}.live-pill{display:none}.hero{gap:16px;min-height:590px}.hero h1{font-size:54px}.hero-visual{min-height:400px}.note-top{right:-5px}.application-layout{gap:36px;grid-template-columns:.7fr 1.3fr}.form-card{padding:28px 25px}.application-aside h2{font-size:37px}.status-layout{gap:38px}.faq-layout{gap:50px}}
+@media(max-width:760px){html{scroll-padding-top:76px}.page-wrap{width:min(100% - 34px,560px)}.site-header{height:72px;padding:0 17px;gap:10px}.brand-mark{width:38px;height:38px}.brand-copy strong{font-size:13px}.brand-copy small{font-size:8px}.main-nav{display:none;position:absolute;left:12px;right:12px;top:65px;flex-direction:column;gap:0;padding:8px;border:1px solid #e6e7ef;border-radius:13px;background:#fff;box-shadow:0 15px 30px rgba(30,30,50,.1)}.main-nav.open{display:flex}.main-nav a{padding:12px 13px;border-radius:8px;font-size:12px}.main-nav a:hover{background:#f6f4ff}.header-actions{margin-left:auto}.header-actions .button{min-height:35px;padding:0 10px;font-size:10px}.button-icon{font-size:14px}.mobile-menu{display:block;flex-shrink:0;width:36px;height:36px;font-size:16px}.notice-bar{padding:9px 17px;font-size:10px}.hero{display:flex;flex-direction:column;align-items:stretch;gap:0;padding-top:50px;padding-bottom:65px;min-height:0}.hero-copy{padding-bottom:0}.hero h1{font-size:clamp(43px,12vw,60px);margin-top:19px}.hero-lead{max-width:490px;font-size:12px}.hero-actions{gap:17px;margin-top:23px}.hero-actions .button{min-height:48px;padding:0 16px;font-size:11px}.text-link{font-size:11px}.hero-trust{margin-top:24px}.hero-visual{min-height:380px;margin-top:20px}.main-visual-card{width:min(370px,82%);padding:23px}.visual-title{font-size:25px}.orbit-a{width:390px;height:270px}.orbit-b{width:330px;height:300px}.note-top{top:33px;right:0}.note-bottom{bottom:34px;left:0}.floating-note{padding:9px 11px}.floating-note b{font-size:9px}.floating-note small{font-size:8px}.visual-caption{font-size:7px;right:2px;bottom:0}.hero-bottomline{bottom:20px;font-size:7px}.flow-section,.application-section,.status-section,.leaderboard-section,.faq-section{padding:68px 0}.section-heading{align-items:flex-start;flex-direction:column;gap:18px}.section-heading h2,.status-layout h2,.faq-layout h2{font-size:36px}.split-heading>p{font-size:12px}.flow-grid{grid-template-columns:1fr;gap:11px;margin-top:26px}.flow-card{min-height:0;padding:22px}.flow-icon{width:39px;height:39px}.flow-card h3{margin-top:16px}.flow-tag{margin-top:14px}.application-layout{grid-template-columns:1fr;gap:29px}.application-aside{padding-top:0}.application-aside h2{font-size:39px}.application-aside>p{max-width:460px;margin:14px 0 18px;font-size:12px}.aside-checklist{grid-template-columns:1fr 1fr;gap:14px 10px;margin-top:20px}.aside-checklist>div:last-child{grid-column:1/-1}.privacy-note{margin-top:22px}.form-card{padding:24px 18px 19px;border-radius:17px}.form-card-heading h3{font-size:22px}.required-note{font-size:9px}.stepper{gap:7px;margin:23px 0;padding:11px 9px}.stepper-item{gap:5px}.stepper-item span{width:23px;height:23px;font-size:9px}.stepper-item b{font-size:9px}.stepper-line{min-width:5px}.form-step-title h4{font-size:18px}.form-step-title p{font-size:10px}.input-grid{gap:16px 10px}.field>span{font-size:10px}.field input,.field select{height:43px;padding:10px;font-size:11px}.field textarea{padding:11px;font-size:11px}.field-full .choice-row{grid-template-columns:1fr}.choice>span{min-height:52px;padding:8px 10px}.choice b{font-size:10px}.choice small{font-size:9px}.form-controls{gap:8px}.form-controls .button{min-height:41px;padding:0 11px;font-size:10px}.controls-right{gap:8px}.step-helper{font-size:8px}.quiz-item{padding:11px}.quiz-item legend{font-size:10px}.quiz-item>label{padding:7px 6px;font-size:9px}.agree-check{font-size:9px}.status-layout{grid-template-columns:1fr;gap:25px}.status-layout h2{font-size:36px}.status-layout>div>p{font-size:11px}.status-card{padding:20px;gap:13px}.status-card .field{grid-column:1/-1}.status-card>.button{grid-column:1/-1;margin-top:0;width:100%}.leaderboard-heading{gap:18px}.leaderboard-heading h2{font-size:36px}.leaderboard-side{max-width:100%}.leaderboard-wrap{margin-top:25px;padding:0 11px}.leaderboard-header,.roster-row{grid-template-columns:38px 1fr 80px;gap:9px}.leaderboard-header{padding:14px 5px;font-size:7px}.roster-row{padding:13px 5px}.roster-avatar{width:31px;height:31px}.roster-name{gap:8px}.roster-name strong{max-width:160px;overflow-wrap:anywhere;font-size:10px}.roster-name small{font-size:8px}.status-badge{padding:6px 7px;font-size:8px}.leaderboard-footer{padding:13px 5px;font-size:6px;letter-spacing:.04em}.faq-layout{grid-template-columns:1fr;gap:23px}.faq-layout h2{font-size:36px}.faq-list summary{gap:13px;font-size:11px}.site-footer{padding-top:24px}.footer-main{display:grid;grid-template-columns:1fr auto;gap:18px}.footer-main>p{grid-column:1/-1;grid-row:2;margin:0}.back-top{grid-column:2;grid-row:1;font-size:9px}.footer-bottom{font-size:7px}.admin-login-dialog{padding:27px 22px}.admin-panel-dialog{width:calc(100% - 10px);height:calc(100% - 10px);border-radius:13px}.admin-panel-top{padding:12px;align-items:flex-start}.admin-panel-title{gap:7px}.admin-panel-title strong{font-size:9px}.admin-panel-title small{font-size:7px}.admin-panel-actions{gap:4px;flex-wrap:wrap;justify-content:flex-end}.admin-panel-actions .button{min-height:31px;padding:0 8px;font-size:8px}.panel-close{width:29px;height:29px}.admin-panel-body{height:calc(100% - 63px);padding:19px 12px 25px}.admin-welcome{align-items:flex-start;flex-direction:column;gap:14px}.admin-welcome h2{font-size:30px}.admin-welcome p{font-size:10px}.admin-stats{grid-template-columns:1fr 1fr;gap:8px;margin:17px 0}.admin-stats article{padding:13px}.admin-stats article b{font-size:24px;margin:6px 0}.admin-table-toolbar{align-items:stretch;flex-direction:column;padding:15px;gap:14px}.admin-filters{display:grid;grid-template-columns:1fr auto}.search-field{width:100%}.admin-table-footer{padding:12px;font-size:7px}.admin-date-chip{padding:9px 11px}.admin-date-chip span,.admin-date-chip b{font-size:8px}}
+@media(max-width:420px){.page-wrap{width:calc(100% - 26px)}.site-header{padding:0 12px}.brand{gap:8px}.brand-copy strong{font-size:12px}.brand-copy small{font-size:7px;letter-spacing:.05em}.header-actions .button{padding:0 8px}.mobile-menu{width:33px;height:34px}.hero h1{font-size:42px}.hero-visual{min-height:335px}.main-visual-card{width:84%;padding:18px}.visual-code{margin-top:25px}.visual-title{font-size:22px}.visual-divider{margin:20px 0 15px}.floating-note{gap:7px}.note-icon{width:26px;height:26px}.floating-note small{max-width:150px}.hero-actions{gap:12px}.hero-actions .button{padding:0 12px}.form-card{padding:22px 13px 17px}.stepper-item b{font-size:8px}.stepper-item span{width:21px;height:21px}.form-card-heading h3{font-size:20px}.form-overline{font-size:8px}.step-helper{max-width:77px;white-space:normal;line-height:1.4}.form-controls .button{padding:0 9px}.leaderboard-footer span:last-child{max-width:125px;text-align:right}.footer-bottom{font-size:6px}.admin-panel-actions .button{font-size:7px;padding:0 6px}.admin-panel-actions #adminRefresh{display:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <div class="topline"></div>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="RP Gate, kembali ke halaman utama">
+      <span class="brand-mark"><span>R</span><i></i></span>
+      <span class="brand-copy"><strong>RP<span>GATE</span></strong><small>ROLEPLAY APPLICATION</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Navigasi utama">
+      <a href="#alur">Alur pendaftaran</a>
+      <a href="#daftar">Formulir</a>
+      <a href="#leaderboard">Pemain diterima</a>
+    </nav>
+    <div class="header-actions">
+      <span class="live-pill"><i></i><span id="connectionLabel">Memuat status</span></span>
+      <button class="button button-dark button-small" id="adminOpen" type="button"><span class="button-icon">⌘</span> Admin</button>
+    </div>
+    <button class="mobile-menu" id="mobileMenu" aria-label="Buka navigasi" aria-expanded="false" type="button">☰</button>
+  </header>
+
+  <div class="notice-bar" id="modeNotice" role="status" aria-live="polite">
+    <span class="notice-icon">i</span><span id="modeNoticeText">Memeriksa konfigurasi…</span>
+    <button id="dismissNotice" type="button" aria-label="Tutup pemberitahuan">×</button>
+  </div>
+
+  <main id="home">
+    <section class="hero page-wrap">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> YOUR NEXT CHAPTER STARTS HERE</div>
+        <h1>Bukan sekadar<br>masuk server.<br><span>Mulai ceritamu.</span></h1>
+        <p class="hero-lead">Perkenalkan karakter kamu, kenali aturan mainnya, lalu ajukan whitelist. Proses yang jelas, adil, dan bisa kamu pantau.</p>
+        <div class="hero-actions">
+          <a href="#daftar" class="button button-primary">Mulai pendaftaran <span>↗</span></a>
+          <a href="#alur" class="text-link">Lihat alurnya <span>↓</span></a>
+        </div>
+        <div class="hero-trust">
+          <div class="avatar-stack" aria-hidden="true"><span>R</span><span>P</span><span>G</span></div>
+          <p><strong>Roleplay dimulai dari kamu.</strong><br><span>Isi data dengan jujur dan hormati pemain lain.</span></p>
+        </div>
+      </div>
+      <div class="hero-visual" aria-label="Ilustrasi proses whitelist">
+        <div class="visual-orbit orbit-a"></div><div class="visual-orbit orbit-b"></div>
+        <div class="visual-grid"></div>
+        <div class="visual-card main-visual-card">
+          <div class="visual-card-top"><span class="mini-logo">R.</span><span class="tiny-status"><i></i> APPLICATION GATE</span></div>
+          <div class="visual-code">REGISTRATION / 001</div>
+          <div class="visual-title">Make your character<br><span>mean something.</span></div>
+          <div class="visual-divider"></div>
+          <div class="visual-progress-label"><span>APPLICATION FLOW</span><b>03 STEPS</b></div>
+          <div class="visual-progress"><i></i><i></i><i></i></div>
+          <div class="visual-card-foot"><span>PROFILE</span><span>ROLEPLAY</span><span>WHITELIST</span></div>
+        </div>
+        <div class="floating-note note-top"><span class="note-icon purple">✦</span><span><b>One application</b><small>One character at a time</small></span></div>
+        <div class="floating-note note-bottom"><span class="note-icon green">✓</span><span><b>Clear status</b><small>Pending · Accepted · Rejected</small></span></div>
+        <span class="visual-caption">DESIGNED FOR THE NEXT GENERATION OF RP</span>
+      </div>
+      <div class="hero-bottomline"><span>01 / START YOUR JOURNEY</span><span>SCROLL TO EXPLORE <b>↓</b></span></div>
+    </section>
+
+    <section class="flow-section" id="alur">
+      <div class="page-wrap">
+        <div class="section-heading split-heading">
+          <div><div class="eyebrow">SIMPLE BY DESIGN</div><h2>Jelas dari awal.<br><span>Tanpa proses ribet.</span></h2></div>
+          <p>Siapkan data singkat, ceritakan karakter yang ingin kamu mainkan, dan jawab pertanyaan aturan. Admin akan meninjau pendaftaranmu.</p>
+        </div>
+        <div class="flow-grid">
+          <article class="flow-card"><div class="flow-number">01</div><div class="flow-icon icon-violet">⌁</div><h3>Kenali dirimu</h3><p>Isi informasi dasar dengan benar agar tim admin bisa mengenali pendaftar.</p><span class="flow-tag">PROFILE</span></article>
+          <article class="flow-card"><div class="flow-number">02</div><div class="flow-icon icon-blue">✧</div><h3>Bangun karakter</h3><p>Jelaskan identitas karakter dan pengalaman roleplay kamu secara singkat.</p><span class="flow-tag">CHARACTER</span></article>
+          <article class="flow-card"><div class="flow-number">03</div><div class="flow-icon icon-green">✓</div><h3>Kirim & pantau</h3><p>Simpan kode pendaftaran, lalu cek statusnya kapan saja lewat halaman ini.</p><span class="flow-tag">WHITELIST</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="application-section" id="daftar">
+      <div class="page-wrap application-layout">
+        <aside class="application-aside">
+          <div class="eyebrow">APPLICATION FORM</div>
+          <h2>Siap masuk<br><span>ke dalam cerita?</span></h2>
+          <p>Luangkan beberapa menit. Pastikan datanya benar dan jawabanmu menggambarkan cara kamu ingin bermain.</p>
+          <div class="aside-checklist">
+            <div><span>✓</span><p><b>Data jelas</b><small>Gunakan kontak yang bisa dihubungi admin.</small></p></div>
+            <div><span>✓</span><p><b>Karakter masuk akal</b><small>Hindari cerita yang memaksakan hasil.</small></p></div>
+            <div><span>✓</span><p><b>Hormati aturan</b><small>Jaga pengalaman bermain tetap adil.</small></p></div>
+          </div>
+          <div class="privacy-note"><span class="privacy-lock">▣</span><p><b>Data pendaftaran bukan untuk publik.</b><br><span>Leaderboard hanya menampilkan nama RP yang sudah diterima.</span></p></div>
+        </aside>
+
+        <div class="form-card">
+          <div class="form-card-heading"><div><span class="form-overline">WHITELIST / NEW PLAYER</span><h3>Form pendaftaran</h3></div><span class="required-note"><i></i> Wajib diisi</span></div>
+          <div class="stepper" aria-label="Tahap pendaftaran">
+            <div class="stepper-item active" data-step-indicator="0"><span>01</span><b>Profil</b></div><div class="stepper-line"></div>
+            <div class="stepper-item" data-step-indicator="1"><span>02</span><b>Karakter</b></div><div class="stepper-line"></div>
+            <div class="stepper-item" data-step-indicator="2"><span>03</span><b>Aturan</b></div>
+          </div>
+          <form id="applicationForm" novalidate>
+            <div class="form-step" data-step="0">
+              <div class="form-step-title"><span>STEP 01</span><h4>Kenalan dulu, yuk.</h4><p>Data ini membantu admin menghubungi kamu jika diperlukan.</p></div>
+              <div class="input-grid">
+                <label class="field"><span>Nama asli / IRL <em>*</em></span><input name="irl_name" autocomplete="name" maxlength="80" placeholder="Nama kamu" required><small class="field-error" data-error-for="irl_name"></small></label>
+                <label class="field"><span>Umur IRL <em>*</em></span><input name="irl_age" type="number" min="13" max="99" inputmode="numeric" placeholder="Contoh: 16" required><small class="field-error" data-error-for="irl_age"></small></label>
+                <label class="field"><span>Nomor WhatsApp <em>*</em></span><input name="whatsapp" type="tel" autocomplete="tel" maxlength="32" inputmode="tel" placeholder="08xx atau +62…" required><small class="field-hint">Dipakai admin untuk urusan pendaftaran.</small><small class="field-error" data-error-for="whatsapp"></small></label>
+                <label class="field"><span>Discord <small>(opsional)</small></span><input name="discord_username" maxlength="80" placeholder="username Discord"><small class="field-error" data-error-for="discord_username"></small></label>
+                <label class="field field-full"><span>Biasanya main dari <em>*</em></span><div class="choice-row platform-choices"><label class="choice"><input type="radio" name="platform" value="Java PC" required><span><b>Java Edition</b><small>PC / Laptop</small></span></label><label class="choice"><input type="radio" name="platform" value="Bedrock Mobile" required><span><b>Bedrock Edition</b><small>Android / iOS / Console</small></span></label><label class="choice"><input type="radio" name="platform" value="Keduanya" required><span><b>Keduanya</b><small>Java dan Bedrock</small></span></label></div><small class="field-error" data-error-for="platform"></small></label>
+              </div>
+              <div class="form-controls"><span class="step-helper">01 dari 03 <span>·</span> Profil pendaftar</span><button type="button" class="button button-primary next-step">Lanjutkan <span>→</span></button></div>
+            </div>
+
+            <div class="form-step is-hidden" data-step="1">
+              <div class="form-step-title"><span>STEP 02</span><h4>Cerita dimulai dari karakter.</h4><p>Belum perlu cerita panjang, yang penting jelas dan realistis.</p></div>
+              <div class="input-grid">
+                <label class="field"><span>Nama karakter / RP <em>*</em></span><input name="rp_name" maxlength="60" placeholder="Nama karakter kamu" required><small class="field-hint">Hindari nama yang meniru karakter pemain lain.</small><small class="field-error" data-error-for="rp_name"></small></label>
+                <label class="field"><span>Pengalaman roleplay <em>*</em></span><select name="experience" required><option value="">Pilih pengalaman</option><option value="Baru mulai">Baru mulai</option><option value="Pernah bermain">Pernah bermain</option><option value="Berpengalaman">Berpengalaman</option></select><small class="field-error" data-error-for="experience"></small></label>
+                <label class="field field-full"><span>Waktu bermain yang biasanya tersedia <em>*</em></span><select name="availability" required><option value="">Pilih perkiraan waktu</option><option value="Hari sekolah / malam">Hari sekolah / malam</option><option value="Sore dan malam">Sore dan malam</option><option value="Akhir pekan">Akhir pekan</option><option value="Fleksibel">Fleksibel</option></select><small class="field-error" data-error-for="availability"></small></label>
+                <label class="field field-full"><span>Latar belakang karakter <em>*</em></span><textarea name="character_story" rows="5" minlength="30" maxlength="1800" placeholder="Siapa karakter kamu? Apa tujuan sederhana yang ingin ia capai? (minimal 30 karakter)" required></textarea><div class="field-meta"><small class="field-hint">Tulis dengan kata-katamu sendiri, tidak harus dramatis.</small><small id="storyCount">0 / 1800</small></div><small class="field-error" data-error-for="character_story"></small></label>
+              </div>
+              <div class="form-controls"><button type="button" class="button button-quiet prev-step">← Kembali</button><div class="controls-right"><span class="step-helper">02 dari 03 <span>·</span> Karakter</span><button type="button" class="button button-primary next-step">Lanjutkan <span>→</span></button></div></div>
+            </div>
+
+            <div class="form-step is-hidden" data-step="2">
+              <div class="form-step-title"><span>STEP 03</span><h4>Pahami aturan mainnya.</h4><p>Jawab minimal 2 dari 3 pertanyaan dengan benar sebelum mengirim.</p></div>
+              <div class="quiz-list">
+                <fieldset class="quiz-item"><legend><span>01</span> Saat terjadi konflik dalam RP, sebaiknya kamu…</legend><label><input type="radio" name="quiz1" value="a"><span>Tetap mengikuti aturan, bermain secara wajar, dan hubungi admin bila perlu.</span></label><label><input type="radio" name="quiz1" value="b"><span>Menghina pemainnya di luar karakter supaya menang.</span></label><label><input type="radio" name="quiz1" value="c"><span>Memaksa cerita berjalan sesuai keinginan sendiri.</span></label><small class="field-error" data-error-for="quiz1"></small></fieldset>
+                <fieldset class="quiz-item"><legend><span>02</span> Apa yang dimaksud dengan metagaming?</legend><label><input type="radio" name="quiz2" value="a"><span>Membuat latar belakang karakter yang masuk akal.</span></label><label><input type="radio" name="quiz2" value="b"><span>Menggunakan informasi di luar karakter untuk keuntungan dalam RP.</span></label><label><input type="radio" name="quiz2" value="c"><span>Mengikuti instruksi admin setelah ada laporan.</span></label><small class="field-error" data-error-for="quiz2"></small></fieldset>
+                <fieldset class="quiz-item"><legend><span>03</span> Bermain secara fair berarti…</legend><label><input type="radio" name="quiz3" value="a"><span>Selalu memenangkan adegan karena karakter sendiri paling kuat.</span></label><label><input type="radio" name="quiz3" value="b"><span>Mengabaikan respons pemain lain kalau cerita sedang seru.</span></label><label><input type="radio" name="quiz3" value="c"><span>Memberi pemain lain kesempatan merespons dan mengikuti aturan server.</span></label><small class="field-error" data-error-for="quiz3"></small></fieldset>
+              </div>
+              <label class="agree-check"><input type="checkbox" name="agree_rules"><span>Saya sudah membaca aturan, akan menjaga sikap, dan memahami bahwa data pendaftaran hanya digunakan untuk proses whitelist. <em>*</em></span></label><small class="field-error" data-error-for="agree_rules"></small>
+              <div class="form-controls"><button type="button" class="button button-quiet prev-step">← Kembali</button><div class="controls-right"><span class="step-helper">03 dari 03 <span>·</span> Konfirmasi</span><button id="submitApplication" type="submit" class="button button-primary">Kirim pendaftaran <span>↗</span></button></div></div>
+              <p class="form-footnote">Dengan mengirim, kamu menyatakan informasi yang diisi benar. Jangan memasukkan kata sandi atau informasi pribadi yang tidak diminta.</p>
+            </div>
+          </form>
+          <div class="submit-result is-hidden" id="submitResult" role="status" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="status-section" id="cek-status">
+      <div class="page-wrap status-layout">
+        <div><div class="eyebrow">APPLICATION TRACKER</div><h2>Simpan kodenya.<br><span>Pantau statusnya.</span></h2><p>Setelah mengirim formulir, kamu akan mendapat kode pendaftaran pribadi. Masukkan kode tersebut untuk melihat status terbaru.</p></div>
+        <form id="statusForm" class="status-card" novalidate><div class="status-card-icon">⌕</div><div class="status-card-copy"><h3>Cek status whitelist</h3><p>Kode ini hanya diketahui oleh kamu yang mendaftar.</p></div><label class="field"><span>Kode pendaftaran</span><input name="tracking_token" id="trackingTokenInput" autocomplete="off" spellcheck="false" placeholder="Tempel kode pendaftaran" minlength="32" required><small class="field-error" data-error-for="tracking_token"></small></label><button type="submit" class="button button-dark">Cek status <span>→</span></button><div id="statusResult" class="status-result is-hidden" role="status" aria-live="polite"></div></form>
+      </div>
+    </section>
+
+    <section class="leaderboard-section" id="leaderboard">
+      <div class="page-wrap">
+        <div class="section-heading leaderboard-heading"><div><div class="eyebrow">WELCOME TO THE STORY</div><h2>Pemain yang sudah<br><span>resmi diterima.</span></h2></div><div class="leaderboard-side"><p>Daftar ini hanya menampilkan nama karakter yang diterima, bukan data pribadi pendaftar.</p><span class="count-chip"><i></i><b id="acceptedCount">0</b> ACCEPTED</span></div></div>
+        <div class="leaderboard-wrap"><div class="leaderboard-header"><span>NO.</span><span>NAMA KARAKTER</span><span>STATUS</span></div><div id="leaderboardList" class="leaderboard-list"><div class="empty-state"><span class="empty-state-mark">R.</span><b>Belum ada pemain yang ditampilkan.</b><p>Daftar akan terisi setelah ada pendaftaran yang diterima oleh admin.</p></div></div><div class="leaderboard-footer"><span>RP GATE / COMMUNITY ROSTER</span><span>DATA DIPERBARUI OTOMATIS <i></i></span></div></div>
+      </div>
+    </section>
+
+    <section class="faq-section" id="faq"><div class="page-wrap faq-layout"><div><div class="eyebrow">BEFORE YOU APPLY</div><h2>Yang sering<br><span>ditanyakan.</span></h2><p>Beberapa hal penting sebelum kamu kirim formulir.</p></div><div class="faq-list"><details><summary>Berapa lama pendaftaran ditinjau?<span>+</span></summary><p>Waktu peninjauan bergantung pada admin yang tersedia. Simpan kode pendaftaran untuk mengecek status tanpa mengirim formulir berulang kali.</p></details><details><summary>Apa yang harus dilakukan kalau ditolak?<span>+</span></summary><p>Baca catatan dari admin jika tersedia dan perbaiki hal yang diperlukan. Keputusan akhir tetap mengikuti kebijakan komunitas server.</p></details><details><summary>Apakah nomor HP ditampilkan di leaderboard?<span>+</span></summary><p>Tidak. Leaderboard hanya menampilkan nama RP yang diterima. Data pribadi hanya bisa diakses oleh admin yang sudah diizinkan di Supabase.</p></details><details><summary>Kenapa halaman menampilkan mode preview?<span>+</span></summary><p>Artinya pengaturan Supabase belum dipasang. Halaman tetap dapat dicoba, tetapi data preview hanya tersimpan pada browser/perangkat ini dan tidak terkirim ke database online.</p></details></div></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="page-wrap footer-main"><a class="brand" href="#home"><span class="brand-mark"><span>R</span><i></i></span><span class="brand-copy"><strong>RP<span>GATE</span></strong><small>ROLEPLAY APPLICATION</small></span></a><p>Setiap karakter punya cerita.<br>Jalani dengan fair, bangun bersama.</p><a href="#home" class="back-top">Kembali ke atas ↑</a></div><div class="page-wrap footer-bottom"><span>© <span id="year"></span> RP Gate · Template komunitas roleplay</span><span>PLAY FAIR. TELL YOUR STORY.</span></div></footer>
+
+  <dialog id="adminDialog" class="admin-login-dialog">
+    <button class="dialog-close" data-close-dialog="adminDialog" aria-label="Tutup" type="button">×</button>
+    <div class="admin-login-brand"><span class="brand-mark"><span>R</span><i></i></span><div><strong>ADMIN CONSOLE</strong><small>RESTRICTED ACCESS</small></div></div>
+    <div class="eyebrow">CONTROL ROOM</div><h2>Selamat datang<br><span>kembali, admin.</span></h2><p class="dialog-intro">Masuk memakai akun Supabase Auth yang sudah didaftarkan sebagai admin.</p>
+    <form id="adminLoginForm" novalidate>
+      <label class="field"><span>Email admin</span><input type="email" name="email" autocomplete="username" placeholder="admin@email.com" required><small class="field-error" data-error-for="admin_email"></small></label>
+      <label class="field"><span>Password</span><input type="password" name="password" autocomplete="current-password" placeholder="Password akun admin" required><small class="field-error" data-error-for="admin_password"></small></label>
+      <div id="adminLoginMessage" class="inline-message is-hidden" role="status"></div>
+      <button class="button button-primary button-wide" type="submit" id="adminLoginSubmit">Masuk ke dashboard <span>→</span></button>
+    </form>
+    <div class="demo-divider" id="demoDivider"><span>ATAU</span></div><button class="button button-outline button-wide" id="demoAdminButton" type="button">Buka demo dashboard</button>
+    <p class="secure-caption">Akses admin diverifikasi oleh database. Tombol demo hanya tersedia saat mode preview aktif.</p>
+  </dialog>
+
+  <dialog id="adminPanel" class="admin-panel-dialog">
+    <div class="admin-panel-top"><div class="admin-panel-title"><span class="mini-logo">R.</span><div><strong>RP GATE / ADMIN</strong><small id="adminSessionLabel">CONTROL ROOM</small></div></div><div class="admin-panel-actions"><button id="exportCsv" class="button button-outline button-small" type="button">↓ Export CSV</button><button id="adminRefresh" class="button button-quiet button-small" type="button">↻ Refresh</button><button id="adminLogout" class="button button-dark button-small" type="button">Keluar</button><button class="dialog-close panel-close" data-close-dialog="adminPanel" aria-label="Tutup dashboard" type="button">×</button></div></div>
+    <div class="admin-panel-body"><div class="admin-welcome"><div><div class="eyebrow">OVERVIEW / APPLICATIONS</div><h2>Dashboard <span>pendaftaran.</span></h2><p>Periksa data, beri catatan, dan tentukan status pendaftar. Batasi akses akun admin hanya untuk orang tepercaya.</p></div><div class="admin-date-chip"><span>LIVE WORKSPACE</span><b id="adminModeLabel">PREVIEW MODE</b></div></div>
+      <div class="admin-stats"><article><span>Total pendaftar</span><b id="statTotal">0</b><small>Semua aplikasi masuk</small></article><article><span>Menunggu</span><b id="statPending">0</b><small>Perlu ditinjau</small></article><article><span>Diterima</span><b id="statAccepted">0</b><small>Masuk roster</small></article><article><span>Ditolak</span><b id="statRejected">0</b><small>Sudah diputuskan</small></article></div>
+      <div class="admin-table-card"><div class="admin-table-toolbar"><div><h3>Daftar aplikasi</h3><p>Catatan admin bersifat privat dan tidak ditampilkan ke publik.</p></div><div class="admin-filters"><label class="search-field"><span>⌕</span><input id="adminSearch" type="search" placeholder="Cari nama, RP, Discord…" aria-label="Cari pendaftar"></label><select id="adminFilter" aria-label="Filter berdasarkan status"><option value="all">Semua status</option><option value="pending">Menunggu</option><option value="accepted">Diterima</option><option value="rejected">Ditolak</option></select></div></div>
+        <div class="admin-table-scroll"><table class="admin-table"><thead><tr><th>PENDAFTAR / KARAKTER</th><th>DETAIL</th><th>SKOR ATURAN</th><th>STATUS</th><th>CATATAN ADMIN</th><th>AKSI</th></tr></thead><tbody id="adminRows"><tr><td colspan="6" class="table-empty">Belum ada data. Kiriman baru akan muncul di sini.</td></tr></tbody></table></div><div class="admin-table-footer"><span id="adminResultCount">0 aplikasi ditampilkan</span><span>PERSONAL DATA / ADMIN ONLY</span></div></div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <noscript><div class="noscript-message">Halaman membutuhkan JavaScript agar formulir, pengecekan status, dan dashboard bisa berjalan. Silakan aktifkan JavaScript di browser kamu.</div></noscript>
+<script>
+'use strict';
+const CONFIG = {
+  SUPABASE_URL: 'https://YOUR_PROJECT_REF.supabase.co',
+  SUPABASE_PUBLISHABLE_KEY: 'YOUR_SUPABASE_PUBLISHABLE_KEY'
+};
+
+(async function bootRpGate() {
+  const isConfigured = /^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/i.test(CONFIG.SUPABASE_URL) &&
+    !CONFIG.SUPABASE_URL.includes('YOUR_PROJECT_REF') &&
+    CONFIG.SUPABASE_PUBLISHABLE_KEY.length > 25 &&
+    !CONFIG.SUPABASE_PUBLISHABLE_KEY.includes('YOUR_SUPABASE');
+
+  // Keep first paint independent of Supabase; load its SDK only for a configured live site.
+  if (isConfigured && !(window.supabase && typeof window.supabase.createClient === 'function')) {
+    await new Promise(resolve => {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+      script.async = true;
+      script.onload = resolve;
+      script.onerror = resolve;
+      document.head.appendChild(script);
+    });
+  }
+
+const $ = (selector, root = document) => root.querySelector(selector);
+const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+const demoMode = !isConfigured;
+const supabaseLibraryReady = Boolean(window.supabase && typeof window.supabase.createClient === 'function');
+let supabaseClient = null;
+if (isConfigured && supabaseLibraryReady) {
+  try { supabaseClient = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_PUBLISHABLE_KEY); }
+  catch (error) { console.error('Supabase client could not be initialized:', error); }
+}
+const liveMode = Boolean(supabaseClient);
+const DEMO_STORAGE_KEY = 'rp_gate_v2_demo_entries';
+const STEPS = 3;
+let currentStep = 0;
+let toastTimer = 0;
+let adminEntries = [];
+let adminIsDemo = false;
+let currentAdminEmail = '';
+
+function escapeHTML(value) {
+  return String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+}
+function prettyStatus(status) {
+  return ({ pending: 'Menunggu', accepted: 'Diterima', rejected: 'Ditolak' })[status] || 'Menunggu';
+}
+function showToast(message) {
+  const toast = $('#toast');
+  if (!toast) return;
+  toast.textContent = message;
+  toast.classList.add('show');
+  window.clearTimeout(toastTimer);
+  toastTimer = window.setTimeout(() => toast.classList.remove('show'), 2800);
+}
+function setNotice(message, kind = 'preview') {
+  const notice = $('#modeNotice');
+  const label = $('#connectionLabel');
+  const text = $('#modeNoticeText');
+  notice.classList.remove('is-hidden');
+  notice.dataset.kind = kind;
+  if (kind === 'live') {
+    notice.style.background = '#eaf8f0'; notice.style.borderColor = '#cbeed9'; notice.style.color = '#286747';
+    label.textContent = 'Online'; text.textContent = message;
+  } else if (kind === 'error') {
+    notice.style.background = '#fff1f2'; notice.style.borderColor = '#f6cbd1'; notice.style.color = '#a7354a';
+    label.textContent = 'Perlu konfigurasi'; text.textContent = message;
+  } else {
+    notice.style.background = '#fff5df'; notice.style.borderColor = '#f2e2b9'; notice.style.color = '#705625';
+    label.textContent = 'Mode preview'; text.textContent = message;
+  }
+}
+function showFieldError(name, message) {
+  const error = $(`[data-error-for="${CSS.escape(name)}"]`);
+  if (error) error.textContent = message || '';
+  const controls = $$(`[name="${CSS.escape(name)}"]`);
+  controls.forEach(control => {
+    if (message) control.setAttribute('aria-invalid', 'true');
+    else control.removeAttribute('aria-invalid');
+  });
+}
+function clearStepErrors(step) {
+  $$(`[data-step="${step}"] [data-error-for]`).forEach(error => { error.textContent = ''; });
+  $$(`[data-step="${step}"] [aria-invalid="true"]`).forEach(control => control.removeAttribute('aria-invalid'));
+}
+function stepError(step, message) {
+  showToast(message);
+  const first = $(`[data-step="${step}"] [aria-invalid="true"]`);
+  first?.focus({ preventScroll: false });
+}
+function validateStep(step) {
+  const stepElement = $(`[data-step="${step}"]`);
+  clearStepErrors(step);
+  let valid = true;
+  let firstInvalid = null;
+  const radioNames = [...new Set($$('input[type="radio"]', stepElement).map(el => el.name))];
+  for (const name of radioNames) {
+    const group = $$(`input[type="radio"][name="${CSS.escape(name)}"]`, stepElement);
+    if (group.some(radio => radio.required) && !group.some(radio => radio.checked)) {
+      valid = false; firstInvalid ||= group[0];
+      showFieldError(name, 'Pilih salah satu opsi terlebih dahulu.');
+    }
+  }
+  for (const input of $$('input:not([type="radio"]):not([type="checkbox"]), select, textarea', stepElement)) {
+    if (!input.required) continue;
+    let message = '';
+    if (!input.value.trim()) message = 'Bagian ini wajib diisi.';
+    else if (input.validity.rangeUnderflow || input.validity.rangeOverflow) message = `Masukkan umur antara ${input.min} dan ${input.max} tahun.`;
+    else if (input.validity.tooShort) message = `Isi minimal ${input.minLength} karakter.`;
+    else if (input.validity.typeMismatch) message = 'Periksa format yang kamu masukkan.';
+    else if (!input.checkValidity()) message = 'Periksa kembali isian ini.';
+    if (message) { valid = false; firstInvalid ||= input; showFieldError(input.name, message); }
+  }
+  if (step === 2) {
+    for (const name of ['quiz1', 'quiz2', 'quiz3']) {
+      if (!$(`input[name="${name}"]:checked`, stepElement)) {
+        valid = false;
+        firstInvalid ||= $(`input[name="${name}"]`, stepElement);
+        showFieldError(name, 'Pilih satu jawaban.');
+      }
+    }
+    if (!$('input[name="agree_rules"]', stepElement).checked) {
+      valid = false; firstInvalid ||= $('input[name="agree_rules"]', stepElement);
+      showFieldError('agree_rules', 'Persetujuan aturan dibutuhkan untuk mengirim pendaftaran.');
+    }
+  }
+  if (!valid) {
+    showToast(step === 2 ? 'Lengkapi jawaban aturan dan persetujuan dulu.' : 'Masih ada bagian yang perlu diperiksa.');
+    firstInvalid?.focus({ preventScroll: false });
+  }
+  return valid;
+}
+function goToStep(step) {
+  currentStep = Math.max(0, Math.min(STEPS - 1, step));
+  $$('.form-step').forEach(panel => panel.classList.toggle('is-hidden', Number(panel.dataset.step) !== currentStep));
+  $$('[data-step-indicator]').forEach(indicator => {
+    const n = Number(indicator.dataset.stepIndicator);
+    indicator.classList.toggle('active', n === currentStep);
+    indicator.classList.toggle('complete', n < currentStep);
+  });
+  const formCard = $('.form-card');
+  if (window.matchMedia('(max-width: 760px)').matches && formCard) formCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function getDemoEntries() {
+  try {
+    const value = JSON.parse(localStorage.getItem(DEMO_STORAGE_KEY) || '[]');
+    return Array.isArray(value) ? value : [];
+  } catch (error) { console.warn('Could not read local demo entries:', error); return []; }
+}
+function setDemoEntries(entries) {
+  try { localStorage.setItem(DEMO_STORAGE_KEY, JSON.stringify(entries)); return true; }
+  catch (error) { console.error('Could not save preview data:', error); return false; }
+}
+function makeTrackingToken() {
+  if (window.crypto && typeof window.crypto.getRandomValues === 'function') {
+    const bytes = new Uint8Array(24);
+    window.crypto.getRandomValues(bytes);
+    return [...bytes].map(byte => byte.toString(16).padStart(2, '0')).join('');
+  }
+  if (demoMode) return `${Date.now().toString(16)}${Math.random().toString(16).slice(2)}${Math.random().toString(16).slice(2)}`;
+  throw new Error('Browser tidak menyediakan generator kode yang aman. Buka website melalui HTTPS dan coba lagi.');
+}
+function currentFormData() {
+  const form = $('#applicationForm');
+  const data = new FormData(form);
+  const answers = [data.get('quiz1'), data.get('quiz2'), data.get('quiz3')];
+  const correct = ['a', 'b', 'c'];
+  const ruleScore = answers.reduce((sum, answer, index) => sum + (answer === correct[index] ? 1 : 0), 0);
+  return {
+    irl_name: String(data.get('irl_name') || '').trim(),
+    irl_age: Number(data.get('irl_age')),
+    whatsapp: String(data.get('whatsapp') || '').trim(),
+    discord_username: String(data.get('discord_username') || '').trim() || null,
+    platform: String(data.get('platform') || ''),
+    rp_name: String(data.get('rp_name') || '').trim(),
+    experience: String(data.get('experience') || ''),
+    availability: String(data.get('availability') || ''),
+    character_story: String(data.get('character_story') || '').trim(),
+    rule_score: ruleScore,
+    status: 'pending',
+    agree_rules: data.get('agree_rules') === 'on'
+  };
+}
+function showSubmissionResult(success, message, token = '') {
+  const panel = $('#submitResult');
+  panel.classList.remove('is-hidden', 'error');
+  if (!success) {
+    panel.classList.add('error');
+    panel.innerHTML = `<h4>Pendaftaran belum terkirim</h4><p>${escapeHTML(message)}</p>`;
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    return;
+  }
+  panel.innerHTML = `<h4>Pendaftaran berhasil dikirim ✓</h4><p>${escapeHTML(message)}</p><div class="tracking-code"><code>${escapeHTML(token)}</code><button type="button" id="copyTrackingCode">Salin kode</button></div><p style="margin-top:9px">Simpan kode ini. Kode diperlukan untuk mengecek status pendaftaran nanti.</p>`;
+  $('#copyTrackingCode')?.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(token); showToast('Kode pendaftaran disalin.'); }
+    catch { $('#trackingTokenInput').value = token; showToast('Kode dimasukkan ke kotak pengecekan status. Salin secara manual.'); }
+  }, { once: true });
+  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+async function submitApplication() {
+  const submitButton = $('#submitApplication');
+  if (!validateStep(2)) return;
+  const application = currentFormData();
+  if (application.rule_score < 2) {
+    showFieldError('quiz1', '');
+    showToast(`Skor aturan kamu ${application.rule_score}/3. Minimal 2 jawaban benar untuk mengirim.`);
+    return;
+  }
+  if (!demoMode && !liveMode) {
+    showSubmissionResult(false, 'Konfigurasi terdeteksi tetapi library/koneksi Supabase belum siap. Muat ulang halaman; jika masih gagal, cek koneksi internet dan script CDN.');
+    return;
+  }
+  const originalText = submitButton.innerHTML;
+  submitButton.disabled = true;
+  submitButton.innerHTML = 'Mengirim…';
+  try {
+    const token = makeTrackingToken();
+    if (demoMode) {
+      const entries = getDemoEntries();
+      entries.unshift({ ...application, tracking_token: token, id: `demo-${token.slice(0, 12)}`, created_at: new Date().toISOString(), updated_at: new Date().toISOString(), accepted_at: null, admin_note: null, reviewed_at: null });
+      if (!setDemoEntries(entries)) throw new Error('Penyimpanan browser penuh atau tidak tersedia. Coba hapus data situs atau gunakan mode online.');
+      showSubmissionResult(true, 'Tersimpan di mode preview pada browser ini saja, belum masuk ke database online.', token);
+      $('#applicationForm').reset();
+      $('#storyCount').textContent = '0 / 1800';
+      goToStep(0); await renderLeaderboard();
+      return;
+    }
+    const payload = { ...application, tracking_token: token };
+    const { error } = await supabaseClient.from('registrations').insert(payload);
+    if (error) throw error;
+    showSubmissionResult(true, 'Data berhasil masuk ke antrean peninjauan admin. Kode ini hanya ditampilkan kepadamu, jadi simpan di tempat aman.', token);
+    $('#applicationForm').reset();
+    $('#storyCount').textContent = '0 / 1800';
+    goToStep(0); await renderLeaderboard();
+  } catch (error) {
+    console.error('Registration submit error:', error);
+    let message = error?.message || 'Terjadi masalah saat menyimpan data.';
+    if (/Failed to fetch|NetworkError/i.test(message)) message = 'Koneksi ke Supabase gagal. Periksa URL project, publishable key, dan koneksi internet.';
+    if (/row-level security|permission denied/i.test(message)) message = 'Database menolak kiriman. Pastikan file supabase.sql sudah dijalankan pada project yang benar.';
+    showSubmissionResult(false, message);
+  } finally {
+    submitButton.disabled = false;
+    submitButton.innerHTML = originalText;
+  }
+}
+function renderRosterMarkup(entries) {
+  if (!entries.length) {
+    $('#leaderboardList').innerHTML = '<div class="empty-state"><span class="empty-state-mark">R.</span><b>Belum ada pemain yang ditampilkan.</b><p>Daftar akan terisi setelah ada pendaftaran yang diterima oleh admin.</p></div>';
+    $('#acceptedCount').textContent = '0';
+    return;
+  }
+  $('#acceptedCount').textContent = String(entries.length);
+  $('#leaderboardList').innerHTML = entries.map((entry, index) => {
+    const name = String(entry.rp_name || 'Pemain');
+    const initial = name.trim().slice(0, 1).toUpperCase() || 'R';
+    return `<div class="roster-row"><span class="roster-number">${String(index + 1).padStart(2, '0')}</span><div class="roster-name"><span class="roster-avatar">${escapeHTML(initial)}</span><div><strong>${escapeHTML(name)}</strong><small>WHITELIST MEMBER</small></div></div><span class="status-badge">✓ Diterima</span></div>`;
+  }).join('');
+}
+async function renderLeaderboard() {
+  if (demoMode) {
+    const entries = getDemoEntries().filter(entry => entry.status === 'accepted').sort((a, b) => String(b.accepted_at || '').localeCompare(String(a.accepted_at || ''))).slice(0, 50);
+    renderRosterMarkup(entries);
+    return;
+  }
+  if (!liveMode) { renderRosterMarkup([]); return; }
+  try {
+    const { data, error } = await supabaseClient.from('accepted_leaderboard').select('rp_name,accepted_at').order('accepted_at', { ascending: false }).limit(50);
+    if (error) throw error;
+    renderRosterMarkup(data || []);
+  } catch (error) {
+    console.error('Could not load leaderboard:', error);
+    $('#leaderboardList').innerHTML = '<div class="empty-state"><span class="empty-state-mark">!</span><b>Leaderboard belum dapat dimuat.</b><p>Formulir tetap tersedia. Admin perlu memeriksa konfigurasi Supabase.</p></div>';
+    $('#acceptedCount').textContent = '—';
+  }
+}
+function renderStatusResult(entry) {
+  const box = $('#statusResult');
+  box.classList.remove('is-hidden', 'status-accepted', 'status-rejected');
+  if (!entry) {
+    box.classList.add('status-rejected');
+    box.textContent = 'Kode tidak ditemukan. Periksa kembali kode yang kamu salin, lalu coba lagi.';
+    return;
+  }
+  if (entry.status === 'accepted') box.classList.add('status-accepted');
+  if (entry.status === 'rejected') box.classList.add('status-rejected');
+  const status = prettyStatus(entry.status);
+  const date = entry.updated_at ? new Date(entry.updated_at) : entry.created_at ? new Date(entry.created_at) : null;
+  const dateText = date && !Number.isNaN(date.getTime()) ? date.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : 'belum tersedia';
+  const extra = entry.status === 'pending' ? 'Pendaftaranmu masih dalam antrean peninjauan.' : entry.status === 'accepted' ? 'Selamat! Nama karakter kamu sudah diterima.' : 'Silakan baca catatan admin jika tersedia atau hubungi admin melalui kanal komunitas yang resmi.';
+  box.innerHTML = `<strong>${escapeHTML(entry.rp_name || 'Pendaftaran')} — ${escapeHTML(status)}</strong><br>${escapeHTML(extra)}<br><small>Pembaruan terakhir: ${escapeHTML(dateText)}</small>`;
+}
+async function checkApplicationStatus(token) {
+  const cleanToken = String(token || '').trim();
+  if (cleanToken.length < 32) { showFieldError('tracking_token', 'Masukkan kode pendaftaran lengkap (minimal 32 karakter).'); return; }
+  showFieldError('tracking_token', '');
+  $('#statusResult').classList.remove('is-hidden');
+  $('#statusResult').textContent = 'Memeriksa status…';
+  try {
+    let entry = null;
+    if (demoMode) {
+      entry = getDemoEntries().find(item => item.tracking_token === cleanToken) || null;
+    } else if (liveMode) {
+      const { data, error } = await supabaseClient.rpc('get_application_status', { p_tracking_token: cleanToken });
+      if (error) throw error;
+      entry = Array.isArray(data) ? data[0] || null : data || null;
+    } else {
+      throw new Error('Koneksi Supabase belum siap. Coba muat ulang halaman.');
+    }
+    renderStatusResult(entry);
+  } catch (error) {
+    console.error('Status lookup failed:', error);
+    const box = $('#statusResult'); box.classList.remove('is-hidden'); box.classList.add('status-rejected');
+    box.textContent = 'Status belum bisa dicek. Periksa koneksi atau konfigurasi Supabase, lalu coba lagi.';
+  }
+}
+function updateAdminStats(entries) {
+  $('#statTotal').textContent = String(entries.length);
+  $('#statPending').textContent = String(entries.filter(entry => entry.status === 'pending').length);
+  $('#statAccepted').textContent = String(entries.filter(entry => entry.status === 'accepted').length);
+  $('#statRejected').textContent = String(entries.filter(entry => entry.status === 'rejected').length);
+}
+function filteredAdminEntries() {
+  const query = String($('#adminSearch').value || '').trim().toLowerCase();
+  const status = $('#adminFilter').value;
+  return adminEntries.filter(entry => {
+    const haystack = [entry.irl_name, entry.rp_name, entry.whatsapp, entry.discord_username, entry.platform].join(' ').toLowerCase();
+    return (!query || haystack.includes(query)) && (status === 'all' || entry.status === status);
+  });
+}
+function renderAdminRows() {
+  updateAdminStats(adminEntries);
+  const rows = filteredAdminEntries();
+  $('#adminResultCount').textContent = `${rows.length} aplikasi ditampilkan`;
+  const target = $('#adminRows');
+  if (!rows.length) {
+    target.innerHTML = '<tr><td colspan="6" class="table-empty">Tidak ada pendaftar yang cocok dengan pencarian ini.</td></tr>';
+    return;
+  }
+  target.innerHTML = rows.map(entry => {
+    const id = escapeHTML(entry.id);
+    const created = entry.created_at ? new Date(entry.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }) : '—';
+    const story = String(entry.character_story || '').replace(/\s+/g, ' ').trim();
+    const details = `<div class="admin-detail"><span>${escapeHTML(entry.irl_age || '—')} tahun · ${escapeHTML(entry.platform || '—')}</span><span>${escapeHTML(entry.whatsapp || '—')}</span><small>${escapeHTML(entry.discord_username || 'Discord tidak diisi')}</small><small>${escapeHTML(entry.experience || '—')} · ${escapeHTML(entry.availability || '—')}</small><small>Dikirim ${escapeHTML(created)}</small>${story ? `<small title="${escapeHTML(story)}">Cerita: ${escapeHTML(story.slice(0, 76))}${story.length > 76 ? '…' : ''}</small>` : ''}</div>`;
+    return `<tr data-entry-id="${id}"><td><div class="admin-person"><b>${escapeHTML(entry.irl_name || '—')}</b><small>RP: ${escapeHTML(entry.rp_name || '—')}</small></div></td><td>${details}</td><td><span class="score-chip">${escapeHTML(entry.rule_score ?? 0)}/3</span></td><td><select class="status-select" data-status-select="${id}" aria-label="Ubah status untuk ${escapeHTML(entry.rp_name || 'pendaftar')}"><option value="pending" ${entry.status === 'pending' ? 'selected' : ''}>Menunggu</option><option value="accepted" ${entry.status === 'accepted' ? 'selected' : ''}>Diterima</option><option value="rejected" ${entry.status === 'rejected' ? 'selected' : ''}>Ditolak</option></select></td><td><textarea class="admin-note-input" data-note-input="${id}" rows="2" maxlength="600" aria-label="Catatan admin untuk ${escapeHTML(entry.rp_name || 'pendaftar')}" placeholder="Catatan privat…">${escapeHTML(entry.admin_note || '')}</textarea></td><td><button class="row-save" data-save-row="${id}" type="button">Simpan perubahan</button></td></tr>`;
+  }).join('');
+}
+async function loadAdminEntries() {
+  if (adminIsDemo || demoMode) {
+    adminEntries = getDemoEntries();
+    renderAdminRows();
+    return;
+  }
+  if (!liveMode) throw new Error('Supabase belum siap.');
+  const { data, error } = await supabaseClient.from('registrations').select('id,created_at,updated_at,accepted_at,irl_name,irl_age,whatsapp,discord_username,platform,rp_name,experience,availability,character_story,rule_score,status,admin_note,reviewed_at,tracking_token').order('created_at', { ascending: false }).limit(500);
+  if (error) throw error;
+  adminEntries = data || [];
+  renderAdminRows();
+}
+function openAdminPanel() {
+  $('#adminDialog').close?.();
+  $('#adminModeLabel').textContent = adminIsDemo ? 'PREVIEW / LOCAL DATA' : 'LIVE / SUPABASE';
+  $('#adminSessionLabel').textContent = adminIsDemo ? 'DEMO DASHBOARD · DATA PERANGKAT INI' : currentAdminEmail || 'VERIFIED ADMIN SESSION';
+  $('#adminPanel').showModal();
+  loadAdminEntries().catch(error => {
+    console.error('Could not load admin registrations:', error);
+    showToast('Data gagal dimuat. Pastikan akun terdaftar sebagai admin dan SQL sudah dijalankan.');
+    $('#adminRows').innerHTML = '<tr><td colspan="6" class="table-empty">Akses ditolak atau koneksi gagal. Periksa admin_users, RLS, dan koneksi Supabase.</td></tr>';
+  });
+}
+async function verifyCurrentAdmin() {
+  if (!liveMode) return false;
+  const { data: sessionData, error: sessionError } = await supabaseClient.auth.getSession();
+  if (sessionError || !sessionData?.session) return false;
+  currentAdminEmail = sessionData.session.user?.email || '';
+  const { data, error } = await supabaseClient.rpc('is_site_admin');
+  if (error) throw error;
+  if (data !== true) return false;
+  adminIsDemo = false;
+  return true;
+}
+function openAdminLogin() {
+  $('#adminLoginMessage').classList.add('is-hidden');
+  $('#adminLoginMessage').textContent = '';
+  $('#demoDivider').classList.toggle('is-hidden', !demoMode);
+  $('#demoAdminButton').classList.toggle('is-hidden', !demoMode);
+  if (!$('#adminDialog').open) $('#adminDialog').showModal();
+}
+async function handleAdminOpen() {
+  if (demoMode) { openAdminLogin(); return; }
+  if (!liveMode) { setNotice('Supabase sudah dikonfigurasi, tetapi library gagal dimuat. Pastikan koneksi/CDN tersedia.', 'error'); showToast('Koneksi library gagal; dashboard admin belum dapat dibuka.'); return; }
+  try {
+    if (await verifyCurrentAdmin()) openAdminPanel();
+    else openAdminLogin();
+  } catch (error) {
+    console.error('Admin session verification failed:', error);
+    openAdminLogin();
+  }
+}
+async function handleAdminLogin(event) {
+  event.preventDefault();
+  const form = $('#adminLoginForm');
+  const email = String(form.elements.email.value || '').trim();
+  const password = String(form.elements.password.value || '');
+  const message = $('#adminLoginMessage');
+  message.classList.add('is-hidden');
+  if (!email || !form.elements.email.checkValidity()) { message.textContent = 'Masukkan email admin yang valid.'; message.classList.remove('is-hidden'); return; }
+  if (!password) { message.textContent = 'Masukkan password akun admin.'; message.classList.remove('is-hidden'); return; }
+  if (!liveMode) { message.textContent = 'Supabase belum siap. Periksa URL, publishable key, dan koneksi internet.'; message.classList.remove('is-hidden'); return; }
+  const button = $('#adminLoginSubmit'); const original = button.innerHTML;
+  button.disabled = true; button.textContent = 'Memeriksa…';
+  try {
+    const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+    if (error) throw error;
+    currentAdminEmail = data.user?.email || email;
+    const { data: isAdmin, error: roleError } = await supabaseClient.rpc('is_site_admin');
+    if (roleError) throw roleError;
+    if (isAdmin !== true) {
+      await supabaseClient.auth.signOut();
+      throw new Error('Login berhasil, tetapi akun ini belum terdaftar sebagai admin. Tambahkan user ID ke tabel admin_users melalui SQL Editor.');
+    }
+    adminIsDemo = false;
+    form.reset();
+    openAdminPanel();
+  } catch (error) {
+    console.error('Admin login failed:', error);
+    message.textContent = error?.message || 'Login gagal. Periksa email dan password.';
+    message.classList.remove('is-hidden');
+  } finally {
+    button.disabled = false; button.innerHTML = original;
+  }
+}
+async function saveAdminRow(id, button) {
+  const entry = adminEntries.find(item => String(item.id) === String(id));
+  if (!entry) { showToast('Data tidak ditemukan, coba refresh.'); return; }
+  const status = $(`[data-status-select="${CSS.escape(id)}"]`).value;
+  const note = $(`[data-note-input="${CSS.escape(id)}"]`).value.trim();
+  const original = button.textContent; button.disabled = true; button.textContent = 'Menyimpan…';
+  try {
+    if (adminIsDemo) {
+      const all = getDemoEntries();
+      const index = all.findIndex(item => String(item.id) === String(id));
+      if (index < 0) throw new Error('Data preview tidak ditemukan.');
+      const priorStatus = all[index].status;
+      all[index].status = status; all[index].admin_note = note; all[index].reviewed_at = new Date().toISOString(); all[index].updated_at = new Date().toISOString();
+      all[index].accepted_at = status === 'accepted' ? (priorStatus === 'accepted' ? all[index].accepted_at : new Date().toISOString()) : null;
+      if (!setDemoEntries(all)) throw new Error('Tidak dapat menyimpan perubahan pada browser ini.');
+    } else {
+      const { error } = await supabaseClient.from('registrations').update({ status, admin_note: note, reviewed_at: new Date().toISOString() }).eq('id', id);
+      if (error) throw error;
+    }
+    await loadAdminEntries();
+    await renderLeaderboard();
+    showToast('Perubahan tersimpan.');
+  } catch (error) {
+    console.error('Could not save admin row:', error);
+    showToast(error?.message || 'Perubahan gagal disimpan.');
+  } finally { button.disabled = false; button.textContent = original; }
+}
+function csvCell(value) {
+  let text = String(value ?? '');
+  if (/^[\s\u0000-\u001f]*[=+@-]/.test(text)) text = `'${text}`;
+  return `"${text.replace(/"/g, '""')}"`;
+}
+function exportCsv() {
+  if (!adminIsDemo && !liveMode) { showToast('Dashboard belum tersambung.'); return; }
+  const headers = ['created_at', 'irl_name', 'irl_age', 'whatsapp', 'discord_username', 'platform', 'rp_name', 'experience', 'availability', 'character_story', 'rule_score', 'status', 'admin_note'];
+  const rows = filteredAdminEntries();
+  const csv = [headers.map(csvCell).join(','), ...rows.map(entry => headers.map(key => csvCell(entry[key])).join(','))].join('\r\n');
+  const blob = new Blob(['\ufeff', csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob); const anchor = document.createElement('a');
+  anchor.href = url; anchor.download = `rp-gate-pendaftar-${new Date().toISOString().slice(0, 10)}.csv`;
+  document.body.appendChild(anchor); anchor.click(); anchor.remove(); URL.revokeObjectURL(url);
+  showToast(`${rows.length} baris diekspor. File berisi data privat, simpan dengan aman.`);
+}
+async function logoutAdmin() {
+  if (!adminIsDemo && liveMode) {
+    const { error } = await supabaseClient.auth.signOut();
+    if (error) console.warn('Supabase signout:', error.message);
+  }
+  adminIsDemo = false; currentAdminEmail = ''; adminEntries = [];
+  $('#adminPanel').close();
+  showToast('Kamu sudah keluar dari dashboard admin.');
+}
+function init() {
+  $('#year').textContent = String(new Date().getFullYear());
+  if (demoMode) {
+    setNotice('MODE PREVIEW — halaman bisa dicoba, tetapi kiriman hanya tersimpan pada browser ini. Hubungkan Supabase untuk data online.', 'preview');
+  } else if (liveMode) {
+    setNotice('Supabase terkonfigurasi. Kiriman akan disimpan ke database online setelah SQL keamanan dipasang.', 'live');
+  } else {
+    setNotice('Supabase terkonfigurasi, tetapi library JavaScript gagal dimuat. Pastikan koneksi internet dan CDN tidak diblokir.', 'error');
+  }
+  $('#dismissNotice').addEventListener('click', () => $('#modeNotice').classList.add('is-hidden'));
+  $('#mobileMenu').addEventListener('click', () => {
+    const nav = $('.main-nav'); const open = nav.classList.toggle('open');
+    $('#mobileMenu').setAttribute('aria-expanded', String(open)); $('#mobileMenu').textContent = open ? '×' : '☰';
+  });
+  $$('.main-nav a').forEach(link => link.addEventListener('click', () => { $('.main-nav').classList.remove('open'); $('#mobileMenu').setAttribute('aria-expanded', 'false'); $('#mobileMenu').textContent = '☰'; }));
+  $$('.next-step').forEach(button => button.addEventListener('click', () => { if (validateStep(currentStep)) goToStep(currentStep + 1); }));
+  $$('.prev-step').forEach(button => button.addEventListener('click', () => goToStep(currentStep - 1)));
+  $('#applicationForm').addEventListener('submit', event => { event.preventDefault(); submitApplication(); });
+  $$('input[name="quiz1"],input[name="quiz2"],input[name="quiz3"],input[name="platform"],input[name="agree_rules"]').forEach(control => control.addEventListener('change', () => {
+    if (control.name === 'agree_rules' && control.checked) showFieldError('agree_rules', '');
+    else if (control.type === 'radio') showFieldError(control.name, '');
+  }));
+  $$('input,select,textarea').forEach(control => control.addEventListener('input', () => {
+    if (control.name && control.getAttribute('aria-invalid') === 'true' && control.value.trim()) showFieldError(control.name, '');
+  }));
+  $('#applicationForm').elements.character_story.addEventListener('input', event => { $('#storyCount').textContent = `${event.target.value.length} / 1800`; });
+  $('#statusForm').addEventListener('submit', event => { event.preventDefault(); checkApplicationStatus($('#trackingTokenInput').value); });
+  $('#adminOpen').addEventListener('click', handleAdminOpen);
+  $('#adminLoginForm').addEventListener('submit', handleAdminLogin);
+  $('#demoAdminButton').addEventListener('click', () => { adminIsDemo = true; currentAdminEmail = 'DEMO ADMIN'; openAdminPanel(); });
+  $$('[data-close-dialog]').forEach(button => button.addEventListener('click', () => { const dialog = document.getElementById(button.dataset.closeDialog); if (dialog?.open) dialog.close(); }));
+  ['adminDialog', 'adminPanel'].forEach(id => {
+    const dialog = document.getElementById(id);
+    dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+  });
+  $('#adminSearch').addEventListener('input', renderAdminRows);
+  $('#adminFilter').addEventListener('change', renderAdminRows);
+  $('#adminRows').addEventListener('click', event => {
+    const button = event.target.closest('[data-save-row]');
+    if (button) saveAdminRow(button.dataset.saveRow, button);
+  });
+  $('#exportCsv').addEventListener('click', exportCsv);
+  $('#adminRefresh').addEventListener('click', () => loadAdminEntries().then(() => showToast('Data diperbarui.')).catch(error => showToast(error?.message || 'Data gagal dimuat.')));
+  $('#adminLogout').addEventListener('click', logoutAdmin);
+  renderLeaderboard();
+}
+
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
+else init();
+})();
+</script>
+</body>
+</html>
